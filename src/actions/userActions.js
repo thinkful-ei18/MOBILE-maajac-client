@@ -1,34 +1,38 @@
-import { API_BASE_URL } from '../config';
+import { API_BASE_URL } from '../../config';
 import { SubmissionError } from 'redux-form';
-import { normalizeResponseErrors } from '../utils/noramlize-errors';
-import { saveAuthToken, clearAuthToken, saveUserCredentials } from '../local-storage';
+import { normalizeResponseErrors } from '../../utils/noramlize-errors';
+import {
+  saveAuthToken,
+  clearAuthToken,
+  saveUserCredentials
+} from '../../local-storage';
 import jwtDecode from 'jwt-decode'; // this is used on line 79 which is also commented out.
 
 /* REGISTER ACTIONS */
 
 export const REGISTER_REQUEST = 'REGISTER_REQUEST';
 export const registerRequest = () => ({
-  type: REGISTER_REQUEST,
+  type: REGISTER_REQUEST
 });
 
 export const REGISTER_ERROR = 'REGISTER_ERROR';
 export const registerError = error => ({
   type: REGISTER_ERROR,
-  error,
+  error
 });
 
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const registerSuccess = () => ({
-  type: REGISTER_SUCCESS,
+  type: REGISTER_SUCCESS
 });
 
 export const register = user => dispatch => {
   return fetch(`${API_BASE_URL}/users`, {
     method: 'POST',
     headers: {
-      'content-type': 'application/json',
+      'content-type': 'application/json'
     },
-    body: JSON.stringify(user),
+    body: JSON.stringify(user)
   })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
@@ -39,7 +43,7 @@ export const register = user => dispatch => {
       if (reason === 'ValidationError') {
         return Promise.reject(
           new SubmissionError({
-            _error: message,
+            _error: message
           })
         );
       }
@@ -54,12 +58,12 @@ export const login = (username, password) => dispatch => {
     fetch(`${API_BASE_URL}/auth/login`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         username,
-        password,
-      }),
+        password
+      })
     })
       // Reject any requests which don't return a 200 status, creating
       // errors which follow a consistent format
@@ -73,7 +77,7 @@ export const login = (username, password) => dispatch => {
 
         return Promise.reject(
           new SubmissionError({
-            _error: message,
+            _error: message
           })
         );
       })
@@ -85,36 +89,36 @@ export const login = (username, password) => dispatch => {
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
 export const setAuthToken = authToken => ({
   type: SET_AUTH_TOKEN,
-  authToken,
+  authToken
 });
 
 export const CLEAR_AUTH = 'CLEAR_AUTH';
 export const clearAuth = () => ({
-  type: CLEAR_AUTH,
+  type: CLEAR_AUTH
 });
 
 export const AUTH_REQUEST = 'AUTH_REQUEST';
 export const authRequest = () => ({
-  type: AUTH_REQUEST,
+  type: AUTH_REQUEST
 });
 
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const authSuccess = currentUser => ({
   type: AUTH_SUCCESS,
-  currentUser,
+  currentUser
 });
 
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const authError = error => ({
   type: AUTH_ERROR,
-  error,
+  error
 });
 
 // Stores the auth token in state and localStorage, and decodes and stores
 // the user data stored in the token
 const storeAuthToken = (authToken, dispatch) => {
   const decodedToken = jwtDecode(authToken);
-  console.log(decodedToken)
+  console.log(decodedToken);
   dispatch(setAuthToken(authToken));
   dispatch(authSuccess(decodedToken.user));
   saveAuthToken(authToken);
@@ -128,8 +132,8 @@ export const refreshAuthToken = () => (dispatch, getState) => {
     method: 'POST',
     headers: {
       // Provide our existing token as credentials to get a new one
-      Authorization: `Bearer ${authToken}`,
-    },
+      Authorization: `Bearer ${authToken}`
+    }
   })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())

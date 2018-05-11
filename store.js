@@ -1,3 +1,5 @@
+import { AsyncStorage } from 'react-native';
+
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
@@ -23,7 +25,7 @@ const store = createStore(
 );
 
 const authToken = loadAuthToken();
-const user = JSON.parse(localStorage.getItem('user'));
+const user = JSON.parse(AsyncStorage.getItem('user'));
 
 if (authToken) {
   store.dispatch(setAuthToken(authToken));

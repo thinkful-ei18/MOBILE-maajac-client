@@ -1,4 +1,5 @@
-import { API_BASE_URL } from '../config';
+import { AsyncStorage } from 'react-native';
+import { API_BASE_URL } from '../../config';
 
 export const GET_MARKER_SUCCESS = 'GET_MARKER_SUCCESS';
 export const getMarkerSuccess = markers => ({
@@ -53,8 +54,8 @@ export const newMarkerRequest = () => ({
 
 export const newMarker = values => (dispatch, getState) => {
   const { incidentType, location, date, time, description } = values;
-  const authToken = localStorage.getItem('authToken')
-    ? localStorage.getItem('authToken')
+  const authToken = AsyncStorage.getItem('authToken')
+    ? AsyncStorage.getItem('authToken')
     : getState().auth.authToken;
   dispatch(newMarkerRequest());
   return fetch(`${API_BASE_URL}/new/marker`, {
@@ -112,8 +113,8 @@ export const filterMarkers = filter => (dispatch, getState) => {
 };
 
 export const getMarkersDashboard = () => (dispatch, getState) => {
-  const authToken = localStorage.getItem('authToken')
-    ? localStorage.getItem('authToken')
+  const authToken = AsyncStorage.getItem('authToken')
+    ? AsyncStorage.getItem('authToken')
     : getState().auth.authToken;
   dispatch(getMarkerRequest());
   return fetch(`${API_BASE_URL}/markers/dashboard`, {
@@ -131,8 +132,8 @@ export const getMarkersDashboard = () => (dispatch, getState) => {
 };
 
 export const deleteMarkerDashboard = marker => (dispatch, getState) => {
-  const authToken = localStorage.getItem('authToken')
-    ? localStorage.getItem('authToken')
+  const authToken = AsyncStorage.getItem('authToken')
+    ? AsyncStorage.getItem('authToken')
     : getState().auth.authToken;
   fetch(`${API_BASE_URL}/markers/delete`, {
     method: 'DELETE',
