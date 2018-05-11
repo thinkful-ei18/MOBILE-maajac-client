@@ -1,6 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { View } from 'react-native';
+
 import Navbar from '../common/Navbar';
+import UserProfile from '../common/UserProfile';
+
+import * as dashboardStyles from '../styles/dashboardStyles';
+
 
 export default class WardrobeScreen extends React.Component {
   constructor(props) {
@@ -11,20 +16,14 @@ export default class WardrobeScreen extends React.Component {
   }
   render() {
     return (
-      <View>
+      <View style={dashboardStyles.view}>
         <Navbar
           header={this.state.header}
           plus={() => this.add()}
           back={() => this.props.navigation.goBack()}
         />
-        <Text style={styles.text}>Hello From DashboardScreen!!!</Text>
+        <UserProfile/>
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 40
-  }
-});
