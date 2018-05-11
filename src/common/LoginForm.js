@@ -3,9 +3,10 @@ import { reduxForm, Field } from 'redux-form';
 import { ScrollView, Text, TouchableOpacity } from 'react-native';
 
 import MyInput from '../common/Input';
+import { login } from '../actions/userActions';
 
 const onSubmit = (values) => {
-  console.log(values);
+  this.props.dispatch(login(values.username, values.password));
 };
 
 function MyForm(props) {
