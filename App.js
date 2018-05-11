@@ -4,7 +4,7 @@ import { createStackNavigator } from 'react-navigation';
 import store from './store';
 import LoginScreen from './src/screens/LoginScreen';
 import Map from './src/screens/MapScreen';
-import Dashboard from './src/screens/DashboardScreen';
+import DashboardScreen from './src/screens/DashboardScreen';
 
 const RootStack = createStackNavigator({
   Login: {
@@ -20,7 +20,7 @@ const RootStack = createStackNavigator({
     }
   },
   Dashboard: {
-    screen: Dashboard,
+    screen: DashboardScreen,
     navigationOptions: {
       header: null
     }
