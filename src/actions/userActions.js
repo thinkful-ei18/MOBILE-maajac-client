@@ -71,15 +71,16 @@ export const login = (username, password) => dispatch => {
       .then(res => res.json())
       .then(({ authToken }) => storeAuthToken(authToken, dispatch))
       .catch(err => {
-        const { status } = err.error;
-        const message =
-          status === 422 ? err.message : 'Unable to login, please try again';
+        console.log(err, 'hello');
+        // const { status } = err.error;
+        // const message =
+        //   status === 422 ? err.message : 'Unable to login, please try again';
 
-        return Promise.reject(
-          new SubmissionError({
-            _error: message
-          })
-        );
+        // return Promise.reject(
+        //   new SubmissionError({
+        //     _error: message
+        //   })
+        // );
       })
   );
 };
