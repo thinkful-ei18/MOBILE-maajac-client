@@ -1,10 +1,10 @@
 import React from 'react';
-import { StackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 import LoginScreen from './src/screens/LoginScreen';
 import Map from './src/screens/MapScreen';
 import Dashboard from './src/screens/DashboardScreen';
 
-const RootStack = StackNavigator({
+const RootStack = createStackNavigator({
   Login: {
     screen: LoginScreen,
     navigationOptions: {
@@ -18,7 +18,7 @@ const RootStack = StackNavigator({
     }
   },
   Dashboard: {
-    screen: Section,
+    screen: Dashboard,
     navigationOptions: {
       header: null
     }
