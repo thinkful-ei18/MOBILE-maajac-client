@@ -25,11 +25,11 @@ const store = createStore(
 );
 
 const authToken = loadAuthToken();
-const user = JSON.parse(AsyncStorage.getItem('user'));
+// const user = JSON.parse(AsyncStorage.getItem('user'));
 
 if (authToken) {
   store.dispatch(setAuthToken(authToken));
-  store.dispatch(authSuccess(user));
+  // store.dispatch(authSuccess(user));
 }
 
 export default store;
