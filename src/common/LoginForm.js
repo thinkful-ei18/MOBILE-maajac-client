@@ -1,7 +1,7 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { ScrollView, Text, TouchableOpacity } from 'react-native';
-
+import { connect } from 'react-redux';
 import MyInput from '../common/Input';
 import { login } from '../actions/userActions';
 
@@ -12,6 +12,7 @@ const onSubmit = (values, dispatch) => {
 function MyForm(props) {
   return (
     <ScrollView keyboardShouldPersistTaps={'handled'}>
+      {/* {this.props.loggedIn ? redirect : ''}  */}
       <Text>Username</Text>
       <Field
         name={'username'}
@@ -31,4 +32,10 @@ function MyForm(props) {
   );
 }
 
-export default reduxForm({ form: 'signIn' })(MyForm);
+export const mapStateToProps = (state, props) => ({
+  loggedIn: state.auth.currentUser !== null,
+});
+
+export default reduxForm({
+  form: 'signIn',
+})(connect(mapStateToProps)(MyForm));
