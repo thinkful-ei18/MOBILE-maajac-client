@@ -3,9 +3,39 @@ const { StyleSheet } = React
 
 var dashboardStyles = StyleSheet.create({
 
+  // DASHBOARD SCREEN
   view: {
     flex: 1
   },
+  
+
+  // USER REPORTS
+  userReports: {
+
+  },
+  reportCard: {
+
+  },
+  incidentType: {
+
+  },
+  reportIcon: {
+
+  },
+  incidentDate: {
+
+  },
+  incidentDescriptionTitle: {
+
+  },
+  incidentDescription: {
+
+  },
+  deleteIncident:{
+
+  },
+
+
   // USER PROFILE
   userProfile: {
     flex: 1,
@@ -25,7 +55,7 @@ var dashboardStyles = StyleSheet.create({
   },
   userUsername: {
     color: 'red'
-  },
+  }
 
 })
 
