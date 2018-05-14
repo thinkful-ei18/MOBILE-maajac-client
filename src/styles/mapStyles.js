@@ -1,7 +1,9 @@
 import { Constants } from 'expo';
 
-const { StyleSheet } = React;
 const React = require('react-native');
+
+const { StyleSheet } = React;
+
 const Dimensions = require('Dimensions');
 
 const styles = StyleSheet.create({
