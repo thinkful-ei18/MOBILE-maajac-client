@@ -12,7 +12,7 @@ export default class WardrobeScreen extends React.Component {
   }
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Navbar
           header={this.state.header}
           goTo={() => this.props.navigation.navigate('Dashboard')}
@@ -25,7 +25,7 @@ export default class WardrobeScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 40
+  container: {
+    justifyContent: 'center'
   }
 });

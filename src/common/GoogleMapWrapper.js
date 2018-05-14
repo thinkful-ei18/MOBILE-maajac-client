@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Constants, MapView } from 'expo';
+const Dimensions = require('Dimensions');
 
 export default class App extends Component {
   state = {
@@ -20,7 +21,7 @@ export default class App extends Component {
     return (
       <View style={styles.container}>
         <MapView
-          style={{ alignSelf: 'stretch', height: 200 }}
+          style={styles.mapScreen}
           region={this.state.mapRegion}
           onRegionChange={this._handleMapRegionChange}
         />
@@ -36,5 +37,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingTop: Constants.statusBarHeight,
     backgroundColor: '#ecf0f1'
+  },
+  mapScreen: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+    alignSelf: 'stretch',
+
+    marginTop: 600
   }
 });
