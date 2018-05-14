@@ -3,16 +3,42 @@ import { View, StyleSheet } from 'react-native';
 import { Constants, MapView } from 'expo';
 const Dimensions = require('Dimensions');
 
-export default class App extends Component {
-  state = {
-    mapRegion: {
-      latitude: 37.78825,
-      longitude: -122.4324,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421
-    }
-  };
+export const getCurrentLocation = () => {
+  return new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(
+      position => resolve(position),
+      e => reject(e)
+    );
+  });
+};
 
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      mapRegion: {
+        latitude: 37.78825,
+        longitude: -122.4324,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421
+      }
+    };
+  }
+
+  componentDidMount() {
+    return getCurrentLocation().then(position => {
+      if (position) {
+        this.setState({
+          mapRegion: {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+            latitudeDelta: 0.003,
+            longitudeDelta: 0.003
+          }
+        });
+      }
+    });
+  }
   _handleMapRegionChange = mapRegion => {
     this.setState({ mapRegion });
   };
@@ -46,7 +72,6 @@ const styles = StyleSheet.create({
     marginTop: 600
   }
 });
-
 
 /*
  Resources:
