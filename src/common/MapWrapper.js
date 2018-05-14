@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, StyleSheet, Image } from 'react-native';
-import { Constants, MapView } from 'expo';
+import { View, Image } from 'react-native';
+import { MapView } from 'expo';
+
 import { getMarkers } from '../actions/markerActions';
 
-const Marker = MapView.Marker;
-const Dimensions = require('Dimensions');
+import * as styles from '../styles/mapStyles';
 
+const Marker = MapView.Marker;
+
+
+// function to get the coordinates of the user's current location (if they approve the request)
 export const getCurrentLocation = () => {
   return new Promise((resolve, reject) => {
     navigator.geolocation.getCurrentPosition(
@@ -19,6 +23,7 @@ export const getCurrentLocation = () => {
 export class MapWrapper extends Component {
   constructor(props) {
     super(props);
+    // sets the location and size of the initial map render
     this.state = {
       mapRegion: {
         latitude: 37.78825,
@@ -31,6 +36,8 @@ export class MapWrapper extends Component {
 
   componentDidMount() {
     this.props.dispatch(getMarkers());
+
+    // when the component mounts, get the user's coord's
     return getCurrentLocation().then(position => {
       if (position) {
         this.setState({
@@ -48,6 +55,7 @@ export class MapWrapper extends Component {
     this.setState({ mapRegion });
   };
 
+  // sets the marker images
   markerImage(type) {
     if (type === 'Theft') {
       return (
@@ -86,17 +94,20 @@ export class MapWrapper extends Component {
       );
     }
   }
+
   render() {
     console.log(this.props.markersFromServer);
+
     return (
       <View style={styles.container}>
         <MapView
           style={styles.mapScreen}
           region={this.state.mapRegion}
           onRegionChange={this._handleMapRegionChange}
-          onPress={event => console.log(event.nativeEvent.coordinate)}
+          onPress={event => console.log(event.nativeEvent.coordinate)} // get the coordinate's of where the user has clicked on the map
         >
           {this.props.markersFromServer.map((marker, index) => (
+            // create each marker with an image
             <Marker
               coordinate={{
                 latitude: marker.location.lat,
@@ -116,27 +127,6 @@ export class MapWrapper extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: Constants.statusBarHeight,
-    backgroundColor: '#ecf0f1'
-  },
-  mapScreen: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
-    alignSelf: 'stretch',
-
-    marginTop: 600
-  },
-  marker: {
-    height: 30,
-    width: 30
-  }
-});
-
 export const mapStateToProps = (state, props) => ({
   markersFromServer: state.markers.allMarkers ? state.markers.allMarkers : []
 });
@@ -145,6 +135,7 @@ export default connect(mapStateToProps)(MapWrapper);
 
 /*
  Resources:
+  - https://github.com/react-community/react-native-maps
   - https://stackoverflow.com/questions/33804500/screen-width-in-react-native
   - https://facebook.github.io/react-native/docs/dimensions.html
  */
