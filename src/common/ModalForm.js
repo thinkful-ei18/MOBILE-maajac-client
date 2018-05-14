@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo';
 import { Header } from './Header';
+import Report from './Report';
 
 const ModalForm = ({
   visible,
@@ -25,21 +26,7 @@ const ModalForm = ({
       transparent={false}
       visible={visible}
     >
-      <View style={styles.container}>
-        <TouchableOpacity onPress={close}>
-          <Text style={styles.x}>+</Text>
-        </TouchableOpacity>
-        <Header header="Create Report" />
-        <TextInput
-          placeholder={placeholder}
-          style={styles.inputStyle}
-          onChangeText={onChangeText}
-          value={value}
-        />
-        <TouchableOpacity style={styles.button} onPress={submit}>
-          <Text style={styles.text}>SUBMIT</Text>
-        </TouchableOpacity>
-      </View>
+      <Report />
     </Modal>
   );
 };
