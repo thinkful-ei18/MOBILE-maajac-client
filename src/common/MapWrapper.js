@@ -48,6 +48,19 @@ export class MapWrapper extends Component {
     this.setState({ mapRegion });
   };
 
+  markerImage(type) {
+    if (type === 'Theft') {
+      return require('../../assets/map_icon_theft.png');
+    } else if (type === 'Accident') {
+      return require('../../assets/map_icon_accident.png');
+    } else if (type === 'Crime') {
+      return require('../../assets/map_icon_crime.png');
+    } else if (type === 'Other') {
+      return require('../../assets/map_icon_other.png');
+    } else if (type === 'Road-Construction') {
+      return require('../../assets/map_icon_traffic_construction.png');
+    }
+  }
   render() {
     console.log(this.props.markersFromServer);
     return (
@@ -65,6 +78,7 @@ export class MapWrapper extends Component {
               }}
               title={marker.incidentType}
               description={marker.description}
+              image={this.markerImage(marker.incidentType)}
             />
           ))}
         </MapView>
