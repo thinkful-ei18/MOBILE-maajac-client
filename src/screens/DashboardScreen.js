@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, Button } from 'react-native';
+import { View, Text, Image, Button, ScrollView, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 
 // import RequiresLogin from '../common/Requires-Login';
@@ -11,7 +11,8 @@ import * as dashboardStyles from '../styles/dashboardStyles';
 
 
 class DashboardScreen extends Component {
-  componentDidMount(props) {
+  componentDidMount() {
+
     this.props.dispatch(getMarkersDashboard());
   }
 
@@ -22,10 +23,8 @@ class DashboardScreen extends Component {
     };
   }
 
-	onClick(e) {
-		e.preventDefault();
-		console.log(e.target.id);
-		this.props.dispatch(deleteMarkerDashboard({ markerId: e.target.id }));
+	onClick(markerId) {
+		this.props.dispatch(deleteMarkerDashboard({ markerId }));
   }
   
   render() {
@@ -34,21 +33,24 @@ class DashboardScreen extends Component {
 		let userReports = reports.map(report => (
 			<View style={dashboardStyles.reportCard} key={report._id} >
 				{/* {this.props.loggedIn ? '' : (<Redirect to='/map' />)} */}
-				<Text style={dashboardStyles.incidentType}>{report.incidentType}</Text>
-				<Image 
-          style={dashboardStyles.reportIcon}
-          alt={`Report icon for ${report.incidentType}`} 
-          source={{uri: 'report.icon'}} />
-				<Text style={dashboardStyles.incidentDate}>Date: {report.date}</Text>
-
-				<Text style={dashboardStyles.incidentDescriptionTitle}>Description:</Text>
-				<Text style={dashboardStyles.incidentDescription}>{report.description}</Text>
-				<Button 
-          onClick={e => this.onClick(e)} 
-          id={report._id} 
-          style={dashboardStyles.deleteIncident}>
-					Delete
-				</Button>
+          <Text style={dashboardStyles.incidentType}>{report.incidentType}</Text>
+          <Image 
+            style={dashboardStyles.reportIcon}
+            alt={`Report icon for ${report.incidentType}`} 
+            source={{uri: 'report.icon'}} 
+          />
+          <Text style={dashboardStyles.incidentDate}>Date: {report.date}</Text>
+          <Text style={dashboardStyles.incidentDescriptionTitle}>Description:</Text>
+          <Text style={dashboardStyles.incidentDescription}>{report.description}</Text>
+          <Button 
+            onPress={() => this.onClick(report._id)}
+            title='Delete'
+            id={report._id} 
+            style={dashboardStyles.deleteIncident}
+            accessibilityLabel='Delete this incident report'
+            >
+            Delete
+          </Button>
 			</View>
     ));
     
@@ -60,7 +62,9 @@ class DashboardScreen extends Component {
           back={() => this.props.navigation.goBack()}
         />
         <UserProfile/>
-        <View style={dashboardStyles.userReports}>{userReports}</View>
+        <ScrollView>
+          <View style={dashboardStyles.userReports}>{userReports}</View>
+        </ScrollView>
       </View>
     );
   }
@@ -72,5 +76,10 @@ export const mapStateToProps = state => ({
 	currentUser: state.auth.currentUser ? state.auth.currentUser : '',
 });
 
-// export default RequiresLogin()(connect(mapStateToProps)(DashboardScreen));
 export default connect(mapStateToProps)(DashboardScreen);
+
+/*
+Resources:
+ - https://facebook.github.io/react-native/docs/button.html
+*/
+

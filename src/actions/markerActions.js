@@ -1,3 +1,5 @@
+/*global fetch:false*/
+
 import { AsyncStorage } from 'react-native';
 import { API_BASE_URL } from '../../config';
 
@@ -112,18 +114,18 @@ export const filterMarkers = filter => (dispatch, getState) => {
     .catch(err => dispatch(filterMarkerError(err)));
 };
 
-export const getMarkersDashboard = () => (dispatch, getState) => {
-  const authToken = AsyncStorage.getItem('authToken')
-    ? AsyncStorage.getItem('authToken')
-    : getState().auth.authToken;
+export const getMarkersDashboard = () => dispatch => {
   dispatch(getMarkerRequest());
-  return fetch(`${API_BASE_URL}/markers/dashboard`, {
+
+  AsyncStorage.getItem('authToken')
+    .then(authToken => fetch(`${API_BASE_URL}/markers/dashboard`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${authToken}`
-    }
-  })
+      }
+    })
+  )
     .then(res => res.json())
     .then(data => dispatch(getMarkerSuccess(data)))
     .catch(err => {
@@ -131,11 +133,9 @@ export const getMarkersDashboard = () => (dispatch, getState) => {
     });
 };
 
-export const deleteMarkerDashboard = marker => (dispatch, getState) => {
-  const authToken = AsyncStorage.getItem('authToken')
-    ? AsyncStorage.getItem('authToken')
-    : getState().auth.authToken;
-  fetch(`${API_BASE_URL}/markers/delete`, {
+export const deleteMarkerDashboard = marker => dispatch => {
+  AsyncStorage.getItem('authToken')
+    .then( authToken => fetch(`${API_BASE_URL}/markers/delete`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -143,6 +143,7 @@ export const deleteMarkerDashboard = marker => (dispatch, getState) => {
     },
     body: JSON.stringify(marker)
   })
+)
     .then(() => dispatch(getMarkersDashboard()))
     .catch(err => {
       dispatch(getMarkerError(err));
