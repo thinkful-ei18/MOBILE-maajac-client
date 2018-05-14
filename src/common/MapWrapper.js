@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, StyleSheet, Image } from 'react-native';
 import { Constants, MapView } from 'expo';
+import { setUserLocation } from '../actions/reportActions';
 import { getMarkers } from '../actions/markerActions';
 
 const Marker = MapView.Marker;
@@ -94,7 +95,15 @@ export class MapWrapper extends Component {
           style={styles.mapScreen}
           region={this.state.mapRegion}
           onRegionChange={this._handleMapRegionChange}
-          onPress={event => console.log(event.nativeEvent.coordinate)}
+          onPress={({ nativeEvent }) => {
+            this.props.dispatch(
+              setUserLocation({
+                lat: nativeEvent.coordinate.latitude,
+                lng: nativeEvent.coordinate.longitude
+              })
+            );
+            console.log(this.props.indicatorPin);
+          }}
         >
           {this.props.markersFromServer.map((marker, index) => (
             <Marker
@@ -110,6 +119,7 @@ export class MapWrapper extends Component {
               {this.markerImage(marker.incidentType)}
             </Marker>
           ))}
+          <Marker coordinate={this.props.indicatorPin} title={'Incident Pin'} />
         </MapView>
       </View>
     );
@@ -138,7 +148,16 @@ const styles = StyleSheet.create({
 });
 
 export const mapStateToProps = (state, props) => ({
-  markersFromServer: state.markers.allMarkers ? state.markers.allMarkers : []
+  markersFromServer: state.markers.allMarkers ? state.markers.allMarkers : [],
+  indicatorPin: state.report.userLocation
+    ? {
+        latitude: state.report.userLocation.lat,
+        longitude: state.report.userLocation.lng
+      }
+    : {
+        latitude: 37.78825,
+        longitude: -122.4324
+      }
 });
 
 export default connect(mapStateToProps)(MapWrapper);
