@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import './ReactotronConfig'; // for reactotron integration
 
 import { store } from './navigation/store';
 import AppWithNavigationState from './navigation/RootStack';

@@ -36,7 +36,7 @@ class SignupForm extends React.Component {
     })
       .then(res => res.json())
       .then(res => {
-        console.log(res);
+        console.log(res); // Returns new user object
         // if (res.authToken) {
         // 	AsyncStorage.setItem('authToken', res.authToken);
         // 	//this.props.navigation.navigate('Map');
