@@ -15,6 +15,8 @@ class MyForm extends React.Component {
 	componentDidMount() {
 		this.loadInitialState().done();
 	}
+	//Async function checks to see if an authtoken exists in the async storage
+	//if there is anything in the function will render.
 	loadInitialState = async () => {
 		const value = await AsyncStorage.getItem('authToken');
 		if (value !== null) {
