@@ -2,6 +2,7 @@
 /*global fetch:false*/
 import React from 'react';
 import { ScrollView, Text, TouchableOpacity, TextInput, AsyncStorage } from 'react-native';
+import { required, nonEmpty } from '../utils/validators';
 
 class MyForm extends React.Component {
 	constructor(props) {
@@ -15,8 +16,6 @@ class MyForm extends React.Component {
 	componentDidMount() {
 		this.loadInitialState().done();
 	}
-	//Async function checks to see if an authtoken exists in the async storage
-	//if there is anything in the function will render.
 	loadInitialState = async () => {
 		const value = await AsyncStorage.getItem('authToken');
 		if (value !== null) {
@@ -37,6 +36,7 @@ class MyForm extends React.Component {
 		})
 			.then(res => res.json())
 			.then(res => {
+				console.log(res);
 				if (res.authToken) {
 					AsyncStorage.setItem('authToken', res.authToken);
 					//this.props.navigation.navigate('Map');
@@ -51,9 +51,18 @@ class MyForm extends React.Component {
 		return (
 			<ScrollView keyboardShouldPersistTaps={'handled'}>
 				<Text>Username</Text>
-				<TextInput name={'username'} onChangeText={username => this.setState({ username })} />
+				<TextInput
+					name={'username'}
+					validate={[required, nonEmpty]}
+					onChangeText={username => this.setState({ username })}
+				/>
 				<Text>Password</Text>
-				<TextInput name={'password'} onChangeText={password => this.setState({ password })} secureTextEntry />
+				<TextInput
+					name={'password'}
+					validate={[required, nonEmpty]}
+					onChangeText={password => this.setState({ password })}
+					secureTextEntry
+				/>
 				<TouchableOpacity onPress={this.login}>
 					<Text>Submit!</Text>
 				</TouchableOpacity>
