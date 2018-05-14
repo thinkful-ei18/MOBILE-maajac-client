@@ -19,7 +19,7 @@ class MyForm extends React.Component {
 	loadInitialState = async () => {
 		const value = await AsyncStorage.getItem('authToken');
 		if (value !== null) {
-			console.log(`async storage retrieved: ${value}`);
+			// console.log(`async storage retrieved: ${value}`);
 			//this.props.navigation.navigate('Map');
 		}
 	};
