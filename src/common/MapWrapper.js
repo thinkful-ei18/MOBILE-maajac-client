@@ -3,9 +3,13 @@ import { connect } from 'react-redux';
 import { View, Image } from 'react-native';
 import { MapView } from 'expo';
 
+// import { View, StyleSheet, Image } from 'react-native';
+// import { Constants, MapView } from 'expo';
+import { setUserLocation } from '../actions/reportActions';
 import { getMarkers } from '../actions/markerActions';
 
-import * as styles from '../styles/mapStyles';
+// import { styles } from '../styles/mapStyles';
+import * as styles from '../styles/mapStyles'
 
 const Marker = MapView.Marker;
 
@@ -104,7 +108,15 @@ export class MapWrapper extends Component {
           style={styles.mapScreen}
           region={this.state.mapRegion}
           onRegionChange={this._handleMapRegionChange}
-          onPress={event => console.log(event.nativeEvent.coordinate)} // get the coordinate's of where the user has clicked on the map
+          onPress={({ nativeEvent }) => { // get the coordinate's of where the user has clicked on the map
+            this.props.dispatch(
+              setUserLocation({
+                lat: nativeEvent.coordinate.latitude,
+                lng: nativeEvent.coordinate.longitude
+              })
+            );
+            console.log(this.props.indicatorPin);
+          }}
         >
           {this.props.markersFromServer.map((marker, index) => (
             // create each marker with an image
@@ -121,6 +133,7 @@ export class MapWrapper extends Component {
               {this.markerImage(marker.incidentType)}
             </Marker>
           ))}
+          <Marker coordinate={this.props.indicatorPin} title={'Incident Pin'} />
         </MapView>
       </View>
     );
@@ -128,7 +141,16 @@ export class MapWrapper extends Component {
 }
 
 export const mapStateToProps = (state, props) => ({
-  markersFromServer: state.markers.allMarkers ? state.markers.allMarkers : []
+  markersFromServer: state.markers.allMarkers ? state.markers.allMarkers : [],
+  indicatorPin: state.report.userLocation
+    ? {
+        latitude: state.report.userLocation.lat,
+        longitude: state.report.userLocation.lng
+      }
+    : {
+        latitude: 37.78825,
+        longitude: -122.4324
+      }
 });
 
 export default connect(mapStateToProps)(MapWrapper);
