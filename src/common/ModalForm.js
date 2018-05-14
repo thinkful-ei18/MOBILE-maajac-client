@@ -29,7 +29,7 @@ const ModalForm = ({
         <TouchableOpacity onPress={close}>
           <Text style={styles.x}>+</Text>
         </TouchableOpacity>
-        <Header header="ADD SECTION" />
+        <Header header="Create Report" />
         <TextInput
           placeholder={placeholder}
           style={styles.inputStyle}
