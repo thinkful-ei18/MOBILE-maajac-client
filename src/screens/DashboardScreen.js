@@ -22,36 +22,36 @@ class DashboardScreen extends Component {
     };
   }
 
-	onClick(e) {
-		e.preventDefault();
-		console.log(e.target.id);
-		this.props.dispatch(deleteMarkerDashboard({ markerId: e.target.id }));
+  onClick(e) {
+    e.preventDefault();
+    console.log(e.target.id);
+    this.props.dispatch(deleteMarkerDashboard({ markerId: e.target.id }));
   }
-  
+
   render() {
     const reports = this.props.markersFromServer;
 
-		let userReports = reports.map(report => (
-			<View style={dashboardStyles.reportCard} key={report._id} >
-				{/* {this.props.loggedIn ? '' : (<Redirect to='/map' />)} */}
-				<Text style={dashboardStyles.incidentType}>{report.incidentType}</Text>
-				<Image 
+    let userReports = reports.map(report => (
+      <View style={dashboardStyles.reportCard} key={report._id} >
+        {/* {this.props.loggedIn ? '' : (<Redirect to='/map' />)} */}
+        <Text style={dashboardStyles.incidentType}>{report.incidentType}</Text>
+        <Image
           style={dashboardStyles.reportIcon}
-          alt={`Report icon for ${report.incidentType}`} 
-          source={{uri: 'report.icon'}} />
-				<Text style={dashboardStyles.incidentDate}>Date: {report.date}</Text>
+          alt={`Report icon for ${report.incidentType}`}
+          source={{ uri: 'report.icon' }} />
+        <Text style={dashboardStyles.incidentDate}>Date: {report.date}</Text>
 
-				<Text style={dashboardStyles.incidentDescriptionTitle}>Description:</Text>
-				<Text style={dashboardStyles.incidentDescription}>{report.description}</Text>
-				<Button 
-          onClick={e => this.onClick(e)} 
-          id={report._id} 
+        <Text style={dashboardStyles.incidentDescriptionTitle}>Description:</Text>
+        <Text style={dashboardStyles.incidentDescription}>{report.description}</Text>
+        <Button
+          onClick={e => this.onClick(e)}
+          id={report._id}
+          title={'Delete'}
           style={dashboardStyles.deleteIncident}>
-					Delete
-				</Button>
-			</View>
+        </Button>
+      </View>
     ));
-    
+
     return (
       <View style={dashboardStyles.view}>
         <Navbar
@@ -59,7 +59,7 @@ class DashboardScreen extends Component {
           plus={() => this.add()}
           back={() => this.props.navigation.goBack()}
         />
-        <UserProfile/>
+        <UserProfile />
         <View style={dashboardStyles.userReports}>{userReports}</View>
       </View>
     );
@@ -67,9 +67,9 @@ class DashboardScreen extends Component {
 }
 
 export const mapStateToProps = state => ({
-	markersFromServer: state.markers.allMarkers ? state.markers.allMarkers : [],
-	loggedIn: state.auth.currentUser !== null,
-	currentUser: state.auth.currentUser ? state.auth.currentUser : '',
+  markersFromServer: state.markers.allMarkers ? state.markers.allMarkers : [],
+  loggedIn: state.auth.currentUser !== null,
+  currentUser: state.auth.currentUser ? state.auth.currentUser : '',
 });
 
 // export default RequiresLogin()(connect(mapStateToProps)(DashboardScreen));

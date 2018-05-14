@@ -3,8 +3,11 @@
 import React from 'react';
 import { ScrollView, Text, TouchableOpacity, TextInput, AsyncStorage } from 'react-native';
 import { required, nonEmpty } from '../utils/validators';
+import { reduxForm, Field } from 'redux-form';
+import { connect } from 'react-redux';
+import Input from './Input';
 
-class MyForm extends React.Component {
+class LoginForm extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -47,27 +50,49 @@ class MyForm extends React.Component {
 	};
 
 	render() {
+
+		const { handleSubmit, pristine, submitting } = this.props;
+
+		let errorMessage;
+		if (this.props.error) {
+			errorMessage = (
+				<div className="form-error" aria-live="polite">
+					{this.props.error}
+				</div>
+			);
+		}
+
+		console.log(this.props)
 		return (
-			<ScrollView keyboardShouldPersistTaps={'handled'}>
-				<Text>Username</Text>
-				<TextInput
+			< ScrollView keyboardShouldPersistTaps={'handled'} >
+				{errorMessage}
+				< Text > Username</Text >
+				<Field
 					name={'username'}
-					validate={[required, nonEmpty]}
+					// validate={[required, nonEmpty]}
 					onChangeText={username => this.setState({ username })}
+					component={Input}
 				/>
 				<Text>Password</Text>
-				<TextInput
+				<Field
 					name={'password'}
-					validate={[required, nonEmpty]}
+					// validate={[required, nonEmpty]}
 					onChangeText={password => this.setState({ password })}
+					component={Input}
 					secureTextEntry
 				/>
 				<TouchableOpacity onPress={this.login}>
 					<Text>Submit!</Text>
 				</TouchableOpacity>
-			</ScrollView>
+			</ScrollView >
 		);
 	}
 }
 
-export default MyForm;
+export const mapStateToProps = (state, props) => ({
+	loggedIn: state.auth.currentUser !== null,
+});
+
+export default reduxForm({
+	form: 'login',
+})(connect(mapStateToProps)(LoginForm));

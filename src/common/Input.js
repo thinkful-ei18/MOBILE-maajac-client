@@ -1,22 +1,37 @@
 import React from 'react';
 import { TextInput, View } from 'react-native';
 
-/**
- * to be wrapped with redux-form Field component
- */
-export default function MyInput(props) {
-  const { input, ...inputProps } = props;
+export default class Input extends React.Component {
+  componentDidUpdate(prevProps) {
+    if (!prevProps.meta.active && this.props.meta.active) {
+      this.input.focus()
+    }
+  }
 
-  return (
-    <View>
-      <TextInput
-        {...inputProps}
-        onChangeText={input.onChange}
-        onBlur={input.onBlur}
-        onFocus={input.onFocus}
-        value={input.value}
-      />
+  render() {
+    let error
+    if (this.props.meta.touched && this.props.meta.error) {
+      error = <div className="form-error">{this.props.meta.error}</div>
+    }
 
-    </View>
-  );
+    let warning
+    if (this.props.meta.touched && this.props.meta.warning) {
+      warning = <div className="form-warning">{this.props.meta.warning}</div>
+    }
+
+    return (
+      <View>
+        {error}
+        {warning}
+        <TextInput
+          {...this.props.input}
+          id={this.props.input.name}
+          type={this.props.type}
+          ref={input => (this.input = input)}
+          placeholder={this.props.placeholder}
+        />
+
+      </View>
+    );
+  }
 }
