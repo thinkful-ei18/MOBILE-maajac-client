@@ -46,3 +46,10 @@ const styles = StyleSheet.create({
     marginTop: 600
   }
 });
+
+
+/*
+ Resources:
+  - https://stackoverflow.com/questions/33804500/screen-width-in-react-native
+  - https://facebook.github.io/react-native/docs/dimensions.html
+ */
