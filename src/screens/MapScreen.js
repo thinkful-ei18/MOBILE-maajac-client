@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Navbar from '../common/Navbar';
+import Map from '../common/GoogleMapWrapper';
 
 export default class WardrobeScreen extends React.Component {
   constructor(props) {
@@ -17,7 +18,7 @@ export default class WardrobeScreen extends React.Component {
           goTo={() => this.props.navigation.navigate('Dashboard')}
           back={() => this.props.navigation.goBack()}
         />
-        <Text style={styles.text}>Hello From MapScreen</Text>
+        <Map />
       </View>
     );
   }
