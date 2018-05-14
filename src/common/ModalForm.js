@@ -8,9 +8,9 @@ import {
   TextInput
 } from 'react-native';
 import { LinearGradient } from 'expo';
-import { Header } from '../common';
+import { Header } from './Header';
 
-const ModalForm = ({
+export default (ModalForm = ({
   visible,
   close,
   placeholder,
@@ -42,7 +42,7 @@ const ModalForm = ({
       </View>
     </Modal>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -80,5 +80,3 @@ const styles = StyleSheet.create({
     backgroundColor: '#63D86F'
   }
 });
-
-export { ModalForm };

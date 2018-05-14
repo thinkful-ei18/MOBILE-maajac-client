@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, Image } from 'react-native';
 import { MapView } from 'expo';
+import { ModalForm } from './ModalForm';
 
 // import { View, StyleSheet, Image } from 'react-native';
 // import { Constants, MapView } from 'expo';
@@ -9,10 +10,9 @@ import { setUserLocation } from '../actions/reportActions';
 import { getMarkers } from '../actions/markerActions';
 
 // import { styles } from '../styles/mapStyles';
-import * as styles from '../styles/mapStyles'
+import * as styles from '../styles/mapStyles';
 
 const Marker = MapView.Marker;
-
 
 // function to get the coordinates of the user's current location (if they approve the request)
 export const getCurrentLocation = () => {
@@ -34,7 +34,8 @@ export class MapWrapper extends Component {
         longitude: -122.4324,
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421
-      }
+      },
+      form: true
     };
   }
 
@@ -99,6 +100,10 @@ export class MapWrapper extends Component {
     }
   }
 
+  close() {
+    this.setState({ form: false });
+  }
+
   render() {
     console.log(this.props.markersFromServer);
 
@@ -108,7 +113,8 @@ export class MapWrapper extends Component {
           style={styles.mapScreen}
           region={this.state.mapRegion}
           onRegionChange={this._handleMapRegionChange}
-          onPress={({ nativeEvent }) => { // get the coordinate's of where the user has clicked on the map
+          onPress={({ nativeEvent }) => {
+            // get the coordinate's of where the user has clicked on the map
             this.props.dispatch(
               setUserLocation({
                 lat: nativeEvent.coordinate.latitude,
@@ -135,6 +141,30 @@ export class MapWrapper extends Component {
           ))}
           <Marker coordinate={this.props.indicatorPin} title={'Incident Pin'} />
         </MapView>
+        <ModalForm
+          close={() => this.close()}
+          visible={this.state.form}
+          // placeholder={
+          //   this.state.form2
+          //     ? `Add${this.state.currentSection}`
+          //     : 'Section name'
+          // }
+          // onChangeText={section =>
+          //   this.state.clothing.length === 0
+          //     ? this.setState({ section })
+          //     : this.setState({ clothing: section })
+          // }
+          // value={
+          //   this.state.clothing.length === 0
+          //     ? this.state.section
+          //     : this.state.clothing
+          // }
+          // submit={() =>
+          //   this.state.form2
+          //     ? this.addClothing(this.state.currentSection)
+          //     : this.addWardrobe()
+          // }
+        />
       </View>
     );
   }
