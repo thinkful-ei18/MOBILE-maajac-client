@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 import { Constants, MapView } from 'expo';
 import { getMarkers } from '../actions/markerActions';
 
@@ -50,15 +50,40 @@ export class MapWrapper extends Component {
 
   markerImage(type) {
     if (type === 'Theft') {
-      return require('../../assets/map_icon_theft.png');
+      return (
+        <Image
+          style={styles.marker}
+          source={require('../../assets/map_icon_theft.png')}
+        />
+      );
     } else if (type === 'Accident') {
-      return require('../../assets/map_icon_accident.png');
+      return (
+        <Image
+          style={styles.marker}
+          source={require('../../assets/map_icon_accident.png')}
+        />
+      );
     } else if (type === 'Crime') {
-      return require('../../assets/map_icon_crime.png');
+      return (
+        <Image
+          style={styles.marker}
+          source={require('../../assets/map_icon_crime.png')}
+        />
+      );
     } else if (type === 'Other') {
-      return require('../../assets/map_icon_other.png');
+      return (
+        <Image
+          style={styles.marker}
+          source={require('../../assets/map_icon_other.png')}
+        />
+      );
     } else if (type === 'Road-Construction') {
-      return require('../../assets/map_icon_traffic_construction.png');
+      return (
+        <Image
+          style={styles.marker}
+          source={require('../../assets/map_icon_traffic_construction.png')}
+        />
+      );
     }
   }
   render() {
@@ -78,8 +103,10 @@ export class MapWrapper extends Component {
               }}
               title={marker.incidentType}
               description={marker.description}
-              image={this.markerImage(marker.incidentType)}
-            />
+              // image={this.markerImage(marker.incidentType)}
+            >
+              {this.markerImage(marker.incidentType)}
+            </Marker>
           ))}
         </MapView>
       </View>
@@ -101,6 +128,10 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
 
     marginTop: 600
+  },
+  marker: {
+    height: 30,
+    width: 30
   }
 });
 
