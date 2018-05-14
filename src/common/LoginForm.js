@@ -1,34 +1,66 @@
+'use strict';
+/*global fetch:false*/
 import React from 'react';
-import { reduxForm, Field } from 'redux-form';
-import { ScrollView, Text, TouchableOpacity } from 'react-native';
+import { ScrollView, Text, TouchableOpacity, TextInput, AsyncStorage } from 'react-native';
 
-import MyInput from '../common/Input';
-import { login } from '../actions/userActions';
+class MyForm extends React.Component {
+	constructor(props) {
+		super(props);
 
-const onSubmit = (values, dispatch) => {
-  dispatch(login(values.username, values.password));
-};
+		this.state = {
+			username: '',
+			password: '',
+		};
+	}
+	componentDidMount() {
+		this.loadInitialState().done();
+	}
+	loadInitialState = async () => {
+		const value = await AsyncStorage.getItem('user');
+		if (value !== null) {
+			//this.props.navigation.navigate('Map');
+		}
+	};
+	login = () => {
+		fetch('http://localhost:8080/api/auth/login', {
+			method: 'POST',
+			headers: {
+				'Content-type': 'application/json',
+			},
+			body: JSON.stringify({
+				username: this.state.username,
+				password: this.state.password,
+			}),
+		})
+			.then(res => res.json())
+			.then(res => {
+				console.log(this.state.username, this.state.password);
+				console.log(res);
+				if (res.authToken) {
+					AsyncStorage.setItem('authToken', res.authToken);
+					console.log('got here');
+					//this.props.navigation.navigate('Map');
+				} else {
+					console.log('Username or Password is incorrect or does not exist');
+				}
+			})
+			.done();
+	};
 
-function MyForm(props) {
-  return (
-    <ScrollView keyboardShouldPersistTaps={'handled'}>
-      <Text>Username</Text>
-      <Field
-        name={'username'}
-        component={MyInput}
-      />
-      <Text>Password</Text>
-      <Field
-        name={'password'}
-        secureTextEntry={true}
-        component={MyInput}
-      />
+	render() {
+		return (
+			<ScrollView keyboardShouldPersistTaps={'handled'}>
+				<Text>Username</Text>
+				<TextInput name={'username'} onChangeText={username => this.setState({ username })} />
+				<Text>Password</Text>
+				<TextInput name={'password'} onChangeText={password => this.setState({ password })} secureTextEntry />
 
-      <TouchableOpacity onPress={props.handleSubmit(onSubmit)}>
-        <Text>Submit!</Text>
-      </TouchableOpacity>
-    </ScrollView>
-  );
+				<TouchableOpacity onPress={this.login}>
+					<Text>Submit!</Text>
+				</TouchableOpacity>
+			</ScrollView>
+		);
+	}
 }
 
-export default reduxForm({ form: 'signIn' })(MyForm);
+export default MyForm;
