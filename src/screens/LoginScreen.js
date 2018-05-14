@@ -1,12 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Navbar from '../common/Navbar';
+import LoginFormNative from '../common/LoginForm';
+import SignupForm from '../common/SignupForm';
+
 
 export default class WardrobeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      header: 'Login'
+      header: 'Login or Register'
     };
   }
   render() {
@@ -16,7 +19,8 @@ export default class WardrobeScreen extends React.Component {
           header={this.state.header}
           goTo={() => this.props.navigation.navigate('Map')}
         />
-        <Text style={styles.text}>Hello From LoginScreen!!!</Text>
+        <LoginFormNative />
+        <SignupForm />
       </View>
     );
   }
