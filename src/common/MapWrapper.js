@@ -94,8 +94,9 @@ export class MapWrapper extends Component {
           style={styles.mapScreen}
           region={this.state.mapRegion}
           onRegionChange={this._handleMapRegionChange}
+          onPress={event => console.log(event.nativeEvent.coordinate)}
         >
-          {this.props.markersFromServer.map(marker => (
+          {this.props.markersFromServer.map((marker, index) => (
             <Marker
               coordinate={{
                 latitude: marker.location.lat,
@@ -104,6 +105,7 @@ export class MapWrapper extends Component {
               title={marker.incidentType}
               description={marker.description}
               // image={this.markerImage(marker.incidentType)}
+              key={index}
             >
               {this.markerImage(marker.incidentType)}
             </Marker>
