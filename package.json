@@ -15,5 +15,8 @@
     "redux-devtools-extension": "^2.13.2",
     "redux-form": "^7.3.0",
     "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "reactotron-react-native": "^1.14.0"
   }
 }
