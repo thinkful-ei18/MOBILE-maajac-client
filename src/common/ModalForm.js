@@ -10,7 +10,7 @@ import {
 import { LinearGradient } from 'expo';
 import { Header } from './Header';
 
-export default (ModalForm = ({
+const ModalForm = ({
   visible,
   close,
   placeholder,
@@ -42,7 +42,7 @@ export default (ModalForm = ({
       </View>
     </Modal>
   );
-});
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -80,3 +80,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#63D86F'
   }
 });
+
+export { ModalForm };
