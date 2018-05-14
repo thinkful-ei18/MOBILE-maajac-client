@@ -18,5 +18,8 @@
 	},
 	"devDependencies": {
 		"reactotron-react-native": "^1.14.0"
+	},
+	"globals": {
+		"fetch": false
 	}
 }
