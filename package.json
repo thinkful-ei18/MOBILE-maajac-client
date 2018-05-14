@@ -16,10 +16,8 @@
 		"redux-form": "^7.3.0",
 		"redux-thunk": "^2.2.0"
 	},
-	"devDependencies": {
-		"reactotron-react-native": "^1.14.0"
-	},
 	"globals": {
 		"fetch": false
 	}
 }
+
