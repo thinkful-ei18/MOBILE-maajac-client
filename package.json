@@ -1,4 +1,5 @@
 {
+
     "main": "node_modules/expo/AppEntry.js",
     "private": true,
     "dependencies": {
@@ -16,4 +17,5 @@
         "redux-form": "^7.3.0",
         "redux-thunk": "^2.2.0"
     }
+
 }
