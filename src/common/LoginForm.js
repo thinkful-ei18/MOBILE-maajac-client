@@ -36,12 +36,11 @@ class MyForm extends React.Component {
 		})
 			.then(res => res.json())
 			.then(res => {
-				console.log(res);
 				if (res.authToken) {
 					AsyncStorage.setItem('authToken', res.authToken);
 					//this.props.navigation.navigate('Map');
 				} else {
-					console.log('Username or Password is incorrect or does not exist');
+					console.log(`Message: ${res.message}`);
 				}
 			})
 			.done();
