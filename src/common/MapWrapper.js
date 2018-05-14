@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { View, StyleSheet } from 'react-native';
 import { Constants, MapView } from 'expo';
+import { getMarkers } from '../actions/markerActions';
+
+const Marker = MapView.Marker;
 const Dimensions = require('Dimensions');
 
 export const getCurrentLocation = () => {
@@ -12,7 +16,7 @@ export const getCurrentLocation = () => {
   });
 };
 
-export default class App extends Component {
+export class MapWrapper extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,6 +30,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
+    this.props.dispatch(getMarkers());
     return getCurrentLocation().then(position => {
       if (position) {
         this.setState({
@@ -44,13 +49,25 @@ export default class App extends Component {
   };
 
   render() {
+    console.log(this.props.markersFromServer);
     return (
       <View style={styles.container}>
         <MapView
           style={styles.mapScreen}
           region={this.state.mapRegion}
           onRegionChange={this._handleMapRegionChange}
-        />
+        >
+          {this.props.markersFromServer.map(marker => (
+            <Marker
+              coordinate={{
+                latitude: marker.location.lat,
+                longitude: marker.location.lng
+              }}
+              title={marker.incidentType}
+              description={marker.description}
+            />
+          ))}
+        </MapView>
       </View>
     );
   }
@@ -72,6 +89,12 @@ const styles = StyleSheet.create({
     marginTop: 600
   }
 });
+
+export const mapStateToProps = (state, props) => ({
+  markersFromServer: state.markers.allMarkers ? state.markers.allMarkers : []
+});
+
+export default connect(mapStateToProps)(MapWrapper);
 
 /*
  Resources:
