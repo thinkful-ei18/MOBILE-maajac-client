@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import {Text, Button, ScrollView} from 'react-native';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { newMarker } from '../actions/markerActions';
-import { required, nonEmpty, length, checkDate } from '../utils/validators';
+import {Input} from './Input';
+// import { required, nonEmpty, length, checkDate } from '../utils/validators';
 
 const descriptionLength = length({ min: 10, max: 120 });
 
@@ -31,74 +33,48 @@ class reportForm extends Component {
     }
 
     return (
-      <form
-        name={'report'}
-        id="incident-report"
-        onSubmit={handleSubmit(values => {
-          if (this.props.location === null) {
-            this.handleLocationError(
-              'Please choose a location by clicking on the map'
-            );
-            return;
-          }
-
-          values.location = this.props.location;
-          dispatch(newMarker(values));
-          dispatch(reset('report'));
-        })}
-      >
-        <label className="reg-label" htmlFor="incidentType">
+      <ScrollView>
+        <Text>
           Incident Type
-        </label>
+        </Text>
         <Field
           component="select"
-          id="type"
-          name="incidentType"
-          required="required"
-        >
-          <option value="" />
+          name="incidentType">
+          {/* <option value="" />
           <option value="Crime">Crime</option>
           <option value="Theft">Theft</option>
           <option value="Road-Construction">Road Construction</option>
           <option value="Accident">Traffic Accident</option>
-          <option value="Other">Other</option>
+          <option value="Other">Other</option> */}
         </Field>
-        <label className="reg-label">Date</label>
+        <Text>Date</Text>
         <Field
           component={Input}
-          id="date"
           type="date"
           name="date"
-          validate={[required, nonEmpty, checkDate]}
         />
-        <label className="reg-label">Time</label>
+        <Text>Time</Text>
         <Field
           component={Input}
-          id="time"
           type="time"
           name="time"
-          validate={[required, nonEmpty]}
         />
-        <label className="reg-label">Description of Incident</label>
+        <Text>Description of Incident</Text>
         <Field
           component={Input}
-          id="description"
           type="text"
           name="description"
-          validate={[required, nonEmpty, descriptionLength]}
         />
-        <p>{this.state.locationError}</p>
-        <button className="report-button" type="submit" onClick={reset}>
+        <Text>{this.state.locationError}</Text>
+        <Button onPress={reset}>
           Clear
-        </button>
-        <button
-          className="report-button"
-          type="submit"
-          disabled={pristine || submitting}
+        </Button>
+        <Button
+        onPress={(values) => console.log(values)}
         >
           Submit
-        </button>
-      </form>
+        </Button>
+      </ScrollView>
     );
   }
 }
