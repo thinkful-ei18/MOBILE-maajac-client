@@ -3,13 +3,11 @@ import { connect } from 'react-redux';
 import { View, Image } from 'react-native';
 import { MapView } from 'expo';
 
-// import { View, StyleSheet, Image } from 'react-native';
-// import { Constants, MapView } from 'expo';
 import { setUserLocation } from '../actions/reportActions';
 import { getMarkers } from '../actions/markerActions';
 
-// import { styles } from '../styles/mapStyles';
 import * as styles from '../styles/mapStyles'
+
 
 const Marker = MapView.Marker;
 
@@ -100,7 +98,6 @@ export class MapWrapper extends Component {
   }
 
   render() {
-    console.log(this.props.markersFromServer);
 
     return (
       <View style={styles.container}>
@@ -127,7 +124,6 @@ export class MapWrapper extends Component {
               }}
               title={marker.incidentType}
               description={marker.description}
-              // image={this.markerImage(marker.incidentType)}
               key={index}
             >
               {this.markerImage(marker.incidentType)}
