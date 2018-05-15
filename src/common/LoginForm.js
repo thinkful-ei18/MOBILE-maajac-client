@@ -2,12 +2,7 @@
 /*global fetch:false*/
 import React from 'react';
 import { ScrollView, Text, TouchableOpacity, TextInput, AsyncStorage } from 'react-native';
-<<<<<<< HEAD
 import { API_BASE_URL } from '../config';
-=======
-import { required, nonEmpty } from '../utils/validators';
-import { API_BASE_URL } from '../../config';
->>>>>>> dc445476f312d4e726e06db3488b5e9e7a7c94dd
 
 import * as style from '../styles/login-signup-formStyles'
 
