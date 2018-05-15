@@ -44,9 +44,11 @@ class DashboardScreen extends Component {
 				<Text style={dashboardStyles.incidentDescriptionTitle}>Description:</Text>
 				<Text style={dashboardStyles.incidentDescription}>{report.description}</Text>
 				<Button 
-          onClick={e => this.onClick(e)} 
+          onPress={e => this.onClick(e)} 
           id={report._id} 
-          style={dashboardStyles.deleteIncident}>
+          style={dashboardStyles.deleteIncident}
+          title='Delete'
+        >
 					Delete
 				</Button>
 			</View>

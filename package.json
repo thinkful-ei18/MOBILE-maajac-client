@@ -21,5 +21,8 @@
 	},
 	"devDependencies": {
 		"react-native-debugger-open": "^0.3.17"
+	},
+	"scripts": {
+		"postinstall": "rndebugger-open"
 	}
 }
