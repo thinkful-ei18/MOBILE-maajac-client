@@ -54,16 +54,15 @@ class MyForm extends React.Component {
 					name={'username'}
 					autoFocus={true}
 					autoCorrect={false}
-					validate={[required, nonEmpty]}
 					onChangeText={username => this.setState({ username })}
 				/>
 				<Text>Password</Text>
 				<TextInput
 					name={'password'}
 					autoCorrect={false}
-					validate={[required, nonEmpty]}
+					maxLength={72}
 					onChangeText={password => this.setState({ password })}
-					secureTextEntry
+					secureTextEntry={true}
 				/>
 				<TouchableOpacity onPress={this.login}>
 					<Text>Submit!</Text>

@@ -87,6 +87,7 @@ class reportForm extends Component {
         <Text>Description of Incident</Text>
         <TextInput
           value={this.state.description}
+          multiline={true}
           onChangeText={value =>
             this.setState({
               description: value

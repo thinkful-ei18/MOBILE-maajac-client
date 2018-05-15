@@ -61,13 +61,16 @@ class SignupForm extends React.Component {
 					name={'password'}
 					autoCorrect={false}
 					onChangeText={password => this.setState({ password })}
-					secureTextEntry />
+					maxLength={72}
+					secureTextEntry={true}
+				/>
 				<Text>Confirm Password</Text>
 				<TextInput
 					name={'passwordConfirm'}
 					autoCorrect={false}
+					maxLength={72}
 					onChangeText={passwordConfirm => this.setState({ passwordConfirm })}
-					secureTextEntry
+					secureTextEntry={true}
 				/>
 				<TouchableOpacity onPress={this.signup}>
 					<Text>Submit</Text>
