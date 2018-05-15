@@ -9,12 +9,15 @@ import {
 import { connect } from 'react-redux';
 
 // import { API_BASE_URL } from '../../config';
+import { clearAuth } from '../actions/userActions';
 
 import * as dashboardStyles from '../styles/dashboardStyles';
 
 class UserProfile extends Component {
   logout = () => {
+    console.log('logging OUT!')
     AsyncStorage.clear();
+    this.props.dispatch(clearAuth());
   };
 
   render() {
@@ -36,7 +39,7 @@ class UserProfile extends Component {
 
         <TouchableOpacity
           onPress={() => {
-            this.logout;
+            this.logout();
             this.props.navigation.navigate('Login');
           }}
         >
