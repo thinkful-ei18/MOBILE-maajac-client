@@ -2,7 +2,7 @@
 /*global fetch:false*/
 import React from 'react';
 import { ScrollView, Text, TouchableOpacity, TextInput, AsyncStorage } from 'react-native';
-import { API_BASE_URL } from '../config';
+import { API_BASE_URL } from '../../config';
 
 class SignupForm extends React.Component {
 	constructor(props) {
