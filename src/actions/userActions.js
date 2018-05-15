@@ -1,7 +1,7 @@
 import { API_BASE_URL } from '../../config';
 import { SubmissionError } from 'redux-form';
 import { normalizeResponseErrors } from '../../utils/noramlize-errors';
-import AsyncStorage from 'react-native';
+import { AsyncStorage } from 'react-native';
 import jwtDecode from 'jwt-decode'; // this is used on line 79 which is also commented out.
 
 /* REGISTER ACTIONS */
@@ -154,4 +154,25 @@ export const refreshAuthToken = () => (dispatch, getState) => {
 			// clearAuthToken(authToken);
 			console.log(err);
 		});
+};
+
+
+// GET THE USER OBJECT
+export const getCurrentUser = () => dispatch => {
+  dispatch(authRequest());
+
+  AsyncStorage.getItem('authToken')
+    .then(authToken => fetch(`${API_BASE_URL}/users/username`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${authToken}`
+      }
+    })
+  )
+    .then(res => res.json())
+    .then(user => dispatch(authSuccess(user)))
+    .catch(err => {
+      dispatch(authError(err));
+    });
 };
