@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import {
   Text,
-  Button,
   ScrollView,
   TextInput,
-  StyleSheet,
+  View,
   AsyncStorage,
   TouchableOpacity
 } from 'react-native';
@@ -104,19 +103,6 @@ class reportForm extends Component {
           }
         />
         <TouchableOpacity
-          onPress={() =>
-            this.setState({
-              incidentType: '',
-              date: '',
-              time: '',
-              description: ''
-            })
-          }
-          style={style.button}>
-          <Text>Clear</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
           onPress={() => {
             this.props.close();
             this.props.submit();
@@ -128,13 +114,29 @@ class reportForm extends Component {
           <Text>Submit</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          onPress={this.props.close}
-          style={style.button}
-          accessibilityLabel={'Cancel'}
-          text={'Cancel'}>
-          <Text>Cancel</Text>
-        </TouchableOpacity>
+        <View style={style.buttonContainer}>
+          <TouchableOpacity
+            onPress={() =>
+              this.setState({
+                incidentType: '',
+                date: '',
+                time: '',
+                description: ''
+              })
+            }
+            style={style.buttonWarning}>
+            <Text>Clear</Text>
+          </TouchableOpacity>
+
+
+          <TouchableOpacity
+            onPress={this.props.close}
+            style={style.buttonCancel}
+            accessibilityLabel={'Cancel'}
+            text={'Cancel'}>
+            <Text>Cancel</Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
     );
   }
