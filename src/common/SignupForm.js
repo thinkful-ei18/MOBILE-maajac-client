@@ -4,6 +4,8 @@ import React from 'react';
 import { ScrollView, Text, TouchableOpacity, TextInput, AsyncStorage } from 'react-native';
 import { API_BASE_URL } from '../config';
 
+import * as style from '../styles/login-signup-formStyles'
+
 class SignupForm extends React.Component {
 	constructor(props) {
 		super(props);
@@ -49,31 +51,41 @@ class SignupForm extends React.Component {
 
 	render() {
 		return (
-			<ScrollView keyboardShouldPersistTaps={'handled'}>
-				<Text>Username</Text>
+			<ScrollView
+				// style={style.container}
+				keyboardShouldPersistTaps={'handled'}>
+				<Text
+					style={style.label}>Username</Text>
 				<TextInput
+					style={style.input}
 					name={'username'}
 					autoCorrect={false}
 					autoFocus={true}
 					onChangeText={username => this.setState({ username })} />
-				<Text>Password</Text>
+				<Text
+					style={style.label}>Password</Text>
 				<TextInput
+					style={style.input}
 					name={'password'}
 					autoCorrect={false}
 					onChangeText={password => this.setState({ password })}
 					maxLength={72}
 					secureTextEntry={true}
 				/>
-				<Text>Confirm Password</Text>
+				<Text
+					style={style.label}>Confirm Password</Text>
 				<TextInput
+					style={style.input}
 					name={'passwordConfirm'}
 					autoCorrect={false}
 					maxLength={72}
 					onChangeText={passwordConfirm => this.setState({ passwordConfirm })}
 					secureTextEntry={true}
 				/>
-				<TouchableOpacity onPress={this.signup}>
-					<Text>Submit</Text>
+				<TouchableOpacity
+					onPress={this.signup}
+					style={style.button}>
+					<Text>Sign up</Text>
 				</TouchableOpacity>
 			</ScrollView>
 		);
