@@ -10,7 +10,6 @@ import { getCurrentUser } from '../actions/userActions';
 
 import * as styles from '../styles/dashboardStyles';
 
-
 class DashboardScreen extends Component {
   componentDidMount() {
     this.props.dispatch(getCurrentUser());
@@ -27,7 +26,7 @@ class DashboardScreen extends Component {
 	onClick(markerId) {
 		this.props.dispatch(deleteMarkerDashboard({ markerId }));
   }
-  
+
   render() {
     const reports = this.props.markersFromServer;
     let username;
@@ -56,7 +55,7 @@ class DashboardScreen extends Component {
           </Button>
 			</View>
     ));
-    
+
     return (
       <View style={styles.view}>
         <Navbar
