@@ -103,6 +103,7 @@ export class MapWrapper extends Component {
   }
 
   close() {
+    this.props.dispatch(getMarkers());
     this.setState({ form: false });
   }
   open() {
@@ -110,8 +111,6 @@ export class MapWrapper extends Component {
   }
 
   render() {
-    console.log(this.props.markersFromServer);
-
     return (
       <View styles={{ justifyContent: 'center' }}>
         <Navbar
@@ -159,7 +158,7 @@ export class MapWrapper extends Component {
           <ModalForm
             close={() => this.close()}
             visible={this.state.form}
-            submit={() => this.props.dispatch(getMarkers())}
+            submit={this.props.dispatch(getMarkers())}
           />
         </View>
       </View>
@@ -167,8 +166,8 @@ export class MapWrapper extends Component {
   }
 }
 
-export const mapStateToProps = (state, props) => ({
-  markersFromServer: state.markers.allMarkers ? state.markers.allMarkers : [],
+export const mapStateToProps = state => ({
+  markersFromServer: state.markers.allMarkers,
   indicatorPin: state.report.userLocation
     ? {
         latitude: state.report.userLocation.lat,
