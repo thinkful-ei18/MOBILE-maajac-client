@@ -4,25 +4,20 @@ const { StyleSheet } = React;
 const Dimensions = require('Dimensions');
 
 const styles = StyleSheet.create({
-  container: {
+  containerLogin: {
     flex: 1,
-    // width: Dimensions.get('window').width,
-    // height: Dimensions.get('window').height,
-    // alignSelf: 'stretch',
     marginTop: 50,
-    marginLeft: 20,
+    marginLeft: 80,
+    paddingHorizontal: 90,
+
   },
   label: {
+    marginLeft: 20,
     fontSize: 18,
     marginBottom: 10
   },
-  buttonContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between'
-  },
   button: {
+    marginLeft: 20,
     alignItems: 'center',
     backgroundColor: '#7bc087',
     height: 30,
@@ -31,10 +26,11 @@ const styles = StyleSheet.create({
     paddingTop: 8
   },
   input: {
+    marginLeft: 20,
     width: Dimensions.get('window').width - 60,
     borderWidth: 1,
     borderColor: '#9e9fa1',
-    paddingBottom: 12,
+    paddingBottom: 4,
     fontSize: 16,
     marginBottom: 12
   },
