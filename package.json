@@ -18,6 +18,8 @@
 	},
 	"globals": {
 		"fetch": false
+	},
+	"devDependencies": {
+		"react-native-debugger-open": "^0.3.17"
 	}
 }
-
