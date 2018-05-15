@@ -9,7 +9,8 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { newMarker } from '../actions/markerActions';
+import { newMarker, getMarkers } from '../actions/markerActions';
+
 import Input from './Input';
 // import { required, nonEmpty, length, checkDate } from '../utils/validators';
 
@@ -104,8 +105,10 @@ class reportForm extends Component {
         <Button
           onPress={() => {
             this.props.close();
-            // this.props.submit();
-            this.submit().then(this.props.submit());
+            this.submit()
+            .then(() => {
+            console.log('Getting new markers...');
+            this.props.dispatch(getMarkers())});
           }}
           title={'Submit'}
         />
