@@ -3,6 +3,7 @@
 import React from 'react';
 import { ScrollView, Text, TouchableOpacity, TextInput, AsyncStorage } from 'react-native';
 import { required, nonEmpty } from '../utils/validators';
+import { API_BASE_URL } from '../config';
 
 class MyForm extends React.Component {
 	constructor(props) {
@@ -20,11 +21,10 @@ class MyForm extends React.Component {
 		const value = await AsyncStorage.getItem('authToken');
 		if (value !== null) {
 			console.log(`async storage retrieved: ${value}`);
-			//this.props.navigation.navigate('Map');
 		}
 	};
 	login = () => {
-		fetch('https://safer-server.herokuapp.com/api/auth/login', {
+		fetch(`${API_BASE_URL}/auth/login`, {
 			method: 'POST',
 			headers: {
 				'Content-type': 'application/json',
