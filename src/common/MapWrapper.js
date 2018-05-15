@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { View, Image } from 'react-native';
 import { MapView } from 'expo';
 import { ModalForm } from './ModalForm';
+import Navbar from './Navbar';
 
 // import { View, StyleSheet, Image } from 'react-native';
 // import { Constants, MapView } from 'expo';
@@ -35,7 +36,8 @@ export class MapWrapper extends Component {
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421
       },
-      form: true
+      form: true,
+      header: 'Map'
     };
   }
 
@@ -103,68 +105,82 @@ export class MapWrapper extends Component {
   close() {
     this.setState({ form: false });
   }
+  open() {
+    this.setState({ form: true });
+  }
 
   render() {
     console.log(this.props.markersFromServer);
 
     return (
-      <View style={styles.container}>
-        <MapView
-          style={styles.mapScreen}
-          region={this.state.mapRegion}
-          onRegionChange={this._handleMapRegionChange}
-          onPress={({ nativeEvent }) => {
-            // get the coordinate's of where the user has clicked on the map
-            this.props.dispatch(
-              setUserLocation({
-                lat: nativeEvent.coordinate.latitude,
-                lng: nativeEvent.coordinate.longitude
-              })
-            );
-            console.log(this.props.indicatorPin);
-          }}
-        >
-          {this.props.markersFromServer.map((marker, index) => (
-            // create each marker with an image
-            <Marker
-              coordinate={{
-                latitude: marker.location.lat,
-                longitude: marker.location.lng
-              }}
-              title={marker.incidentType}
-              description={marker.description}
-              // image={this.markerImage(marker.incidentType)}
-              key={index}
-            >
-              {this.markerImage(marker.incidentType)}
-            </Marker>
-          ))}
-          <Marker coordinate={this.props.indicatorPin} title={'Incident Pin'} />
-        </MapView>
-        <ModalForm
-          close={() => this.close()}
-          visible={this.state.form}
-          // placeholder={
-          //   this.state.form2
-          //     ? `Add${this.state.currentSection}`
-          //     : 'Section name'
-          // }
-          // onChangeText={section =>
-          //   this.state.clothing.length === 0
-          //     ? this.setState({ section })
-          //     : this.setState({ clothing: section })
-          // }
-          // value={
-          //   this.state.clothing.length === 0
-          //     ? this.state.section
-          //     : this.state.clothing
-          // }
-          // submit={() =>
-          //   this.state.form2
-          //     ? this.addClothing(this.state.currentSection)
-          //     : this.addWardrobe()
-          // }
+      <View styles={{ justifyContent: 'center' }}>
+        <Navbar
+          header={this.state.header}
+          goTo={() => this.props.navigation.navigate('Dashboard')}
+          back={() => this.props.navigation.goBack()}
+          plus={() => this.open()}
         />
+        <View style={styles.container}>
+          <MapView
+            style={styles.mapScreen}
+            region={this.state.mapRegion}
+            onRegionChange={this._handleMapRegionChange}
+            onPress={({ nativeEvent }) => {
+              // get the coordinate's of where the user has clicked on the map
+              this.props.dispatch(
+                setUserLocation({
+                  lat: nativeEvent.coordinate.latitude,
+                  lng: nativeEvent.coordinate.longitude
+                })
+              );
+              console.log(this.props.indicatorPin);
+            }}
+          >
+            {this.props.markersFromServer.map((marker, index) => (
+              // create each marker with an image
+              <Marker
+                coordinate={{
+                  latitude: marker.location.lat,
+                  longitude: marker.location.lng
+                }}
+                title={marker.incidentType}
+                description={marker.description}
+                // image={this.markerImage(marker.incidentType)}
+                key={index}
+              >
+                {this.markerImage(marker.incidentType)}
+              </Marker>
+            ))}
+            <Marker
+              coordinate={this.props.indicatorPin}
+              title={'Incident Pin'}
+            />
+          </MapView>
+          <ModalForm
+            close={() => this.close()}
+            visible={this.state.form}
+            // placeholder={
+            //   this.state.form2
+            //     ? `Add${this.state.currentSection}`
+            //     : 'Section name'
+            // }
+            // onChangeText={section =>
+            //   this.state.clothing.length === 0
+            //     ? this.setState({ section })
+            //     : this.setState({ clothing: section })
+            // }
+            // value={
+            //   this.state.clothing.length === 0
+            //     ? this.state.section
+            //     : this.state.clothing
+            // }
+            // submit={() =>
+            //   this.state.form2
+            //     ? this.addClothing(this.state.currentSection)
+            //     : this.addWardrobe()
+            // }
+          />
+        </View>
       </View>
     );
   }

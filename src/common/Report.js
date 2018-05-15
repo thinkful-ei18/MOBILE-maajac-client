@@ -75,12 +75,14 @@ class reportForm extends Component {
               incidentType: this.state.incidentType,
               date: this.state.date,
               time: this.state.time,
-              description: this.state.description
+              description: this.state.description,
+              location: this.props.location
             };
             console.log(obj);
           }}
           title={'Submit'}
         />
+        <Button onPress={this.props.close} title={'Cancel'} />
       </ScrollView>
     );
   }

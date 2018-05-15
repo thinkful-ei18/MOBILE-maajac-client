@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-const Navbar = ({ header, goTo, back }) => {
+const Navbar = ({ header, goTo, back, plus }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={back}>
@@ -12,6 +12,10 @@ const Navbar = ({ header, goTo, back }) => {
 
       <TouchableOpacity onPress={goTo}>
         <Text style={styles.plus}>{goTo ? '>' : null}</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={plus}>
+        <Text style={styles.plus}>{plus ? '+' : null}</Text>
       </TouchableOpacity>
     </View>
   );

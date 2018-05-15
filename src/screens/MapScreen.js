@@ -13,11 +13,6 @@ export default class WardrobeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Navbar
-          header={this.state.header}
-          goTo={() => this.props.navigation.navigate('Dashboard')}
-          back={() => this.props.navigation.goBack()}
-        />
         <Map />
       </View>
     );
