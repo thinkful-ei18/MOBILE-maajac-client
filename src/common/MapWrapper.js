@@ -159,6 +159,7 @@ export class MapWrapper extends Component {
           <ModalForm
             close={() => this.close()}
             visible={this.state.form}
+            submit={() => this.props.dispatch(getMarkers())}
             // placeholder={
             //   this.state.form2
             //     ? `Add${this.state.currentSection}`

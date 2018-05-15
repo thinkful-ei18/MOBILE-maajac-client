@@ -102,7 +102,14 @@ class reportForm extends Component {
           title={'Clear'}
         />
 
-        <Button onPress={() => this.submit()} title={'Submit'} />
+        <Button
+          onPress={() => {
+            this.props.close();
+            this.props.submit();
+            this.submit();
+          }}
+          title={'Submit'}
+        />
         <Button onPress={this.props.close} title={'Cancel'} />
       </ScrollView>
     );
