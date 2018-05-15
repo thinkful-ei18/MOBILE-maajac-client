@@ -100,7 +100,7 @@ export class MapWrapper extends Component {
   }
 
   render() {
-    console.log(this.props.markersFromServer);
+    // console.log(this.props.markersFromServer);
 
     return (
       <View style={styles.container}>
