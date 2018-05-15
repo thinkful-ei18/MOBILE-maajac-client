@@ -13,6 +13,7 @@ import { getMarkers } from '../actions/markerActions';
 // import { styles } from '../styles/mapStyles';
 import * as styles from '../styles/mapStyles';
 
+
 const Marker = MapView.Marker;
 
 // function to get the coordinates of the user's current location (if they approve the request)
@@ -171,13 +172,13 @@ export const mapStateToProps = (state, props) => ({
   markersFromServer: state.markers.allMarkers ? state.markers.allMarkers : [],
   indicatorPin: state.report.userLocation
     ? {
-        latitude: state.report.userLocation.lat,
-        longitude: state.report.userLocation.lng
-      }
+      latitude: state.report.userLocation.lat,
+      longitude: state.report.userLocation.lng
+    }
     : {
-        latitude: 37.78825,
-        longitude: -122.4324
-      }
+      latitude: 37.78825,
+      longitude: -122.4324
+    }
 });
 
 export default connect(mapStateToProps)(MapWrapper);

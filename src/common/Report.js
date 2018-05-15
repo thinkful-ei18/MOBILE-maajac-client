@@ -11,7 +11,9 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { newMarker } from '../actions/markerActions';
 import Input from './Input';
-// import { required, nonEmpty, length, checkDate } from '../utils/validators';
+
+
+import * as style from '../styles/reportFormStyles'
 
 class reportForm extends Component {
   constructor(props) {
@@ -57,7 +59,7 @@ class reportForm extends Component {
 
   render() {
     return (
-      <ScrollView style={styles.container}>
+      <ScrollView style={style.reportFormContainer}>
         <Text>Incident Type</Text>
         <TextInput
           value={this.state.incidentType}
