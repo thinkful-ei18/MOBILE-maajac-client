@@ -68,11 +68,14 @@ class DashboardScreen extends Component {
   }
 }
 
-export const mapStateToProps = state => ({
-	markersFromServer: state.markers.allMarkers ? state.markers.allMarkers : [],
-	loggedIn: state.auth.currentUser !== null,
-	currentUser: state.auth.currentUser ? state.auth.currentUser : '',
-});
+export const mapStateToProps = state => {
+  console.log('DASHBOARD SCREEN STATE:', state);
+  return {
+    markersFromServer: state.markers.allMarkers ? state.markers.allMarkers : [],
+    loggedIn: state.auth.currentUser !== null,
+    currentUser: state.auth.currentUser ? state.auth.currentUser : '',
+  }
+};
 
 // export default RequiresLogin()(connect(mapStateToProps)(DashboardScreen));
 export default connect(mapStateToProps)(DashboardScreen);
