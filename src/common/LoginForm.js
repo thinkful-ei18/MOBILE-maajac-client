@@ -2,8 +2,9 @@
 /*global fetch:false*/
 import React from 'react';
 import { ScrollView, Text, TouchableOpacity, TextInput, AsyncStorage } from 'react-native';
-import { required, nonEmpty } from '../utils/validators';
-import { API_BASE_URL } from '../../config';
+import { API_BASE_URL } from '../config';
+
+import * as style from '../styles/login-signup-formStyles'
 
 class MyForm extends React.Component {
 	constructor(props) {
@@ -48,22 +49,31 @@ class MyForm extends React.Component {
 
 	render() {
 		return (
-			<ScrollView keyboardShouldPersistTaps={'handled'}>
-				<Text>Username</Text>
+			<ScrollView
+				// style={style.container}
+				keyboardShouldPersistTaps={'handled'}>
+				<Text style={style.label}>Username</Text>
 				<TextInput
+					style={style.input}
 					name={'username'}
-					validate={[required, nonEmpty]}
+					autoFocus={true}
+					autoCorrect={false}
 					onChangeText={username => this.setState({ username })}
 				/>
-				<Text>Password</Text>
+				<Text
+					style={style.label}>Password</Text>
 				<TextInput
+					style={style.input}
 					name={'password'}
-					validate={[required, nonEmpty]}
+					autoCorrect={false}
+					maxLength={72}
 					onChangeText={password => this.setState({ password })}
-					secureTextEntry
+					secureTextEntry={true}
 				/>
-				<TouchableOpacity onPress={this.login}>
-					<Text>Submit!</Text>
+				<TouchableOpacity
+					onPress={this.login}
+					style={style.button}>
+					<Text>Login</Text>
 				</TouchableOpacity>
 			</ScrollView>
 		);

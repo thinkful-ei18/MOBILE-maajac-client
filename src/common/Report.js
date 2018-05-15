@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 import {
   Text,
-  Button,
   ScrollView,
   TextInput,
-  StyleSheet,
-  AsyncStorage
+  View,
+  AsyncStorage,
+  TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { newMarker, getMarkers } from '../actions/markerActions';
 
 import Input from './Input';
-// import { required, nonEmpty, length, checkDate } from '../utils/validators';
+
+
+import * as style from '../styles/reportFormStyles'
 
 class reportForm extends Component {
   constructor(props) {
@@ -57,9 +59,12 @@ class reportForm extends Component {
 
   render() {
     return (
-      <ScrollView style={styles.container}>
-        <Text>Incident Type</Text>
+      <ScrollView
+        style={style.reportFormContainer}>
+        <Text
+          style={style.label}>Incident Type</Text>
         <TextInput
+          style={style.input}
           value={this.state.incidentType}
           onChangeText={value =>
             this.setState({
@@ -67,8 +72,10 @@ class reportForm extends Component {
             })
           }
         />
-        <Text>Date</Text>
+        <Text
+          style={style.label}>Date</Text>
         <TextInput
+          style={style.input}
           value={this.state.date}
           onChangeText={value =>
             this.setState({
@@ -76,33 +83,26 @@ class reportForm extends Component {
             })
           }
         />
-        <Text>Time</Text>
+        <Text
+          style={style.label}>Time</Text>
         <TextInput
+          style={style.input}
           value={this.state.time}
           onChangeText={value => this.setState({ time: value })}
         />
-        <Text>Description of Incident</Text>
+        <Text
+          style={style.label}>Description of Incident</Text>
         <TextInput
+          style={style.input}
           value={this.state.description}
+          multiline={true}
           onChangeText={value =>
             this.setState({
               description: value
             })
           }
         />
-        <Button
-          onPress={() =>
-            this.setState({
-              incidentType: '',
-              date: '',
-              time: '',
-              description: ''
-            })
-          }
-          title={'Clear'}
-        />
-
-        <Button
+        <TouchableOpacity
           onPress={() => {
             this.props.close();
             this.submit()
@@ -110,9 +110,35 @@ class reportForm extends Component {
             console.log('Getting new markers...');
             this.props.dispatch(getMarkers())});
           }}
-          title={'Submit'}
-        />
-        <Button onPress={this.props.close} title={'Cancel'} />
+          style={style.button}
+          text={'Submit'}
+          accessibilityLabel={'Submit'}>
+          <Text>Submit</Text>
+        </TouchableOpacity>
+
+        <View style={style.buttonContainer}>
+          <TouchableOpacity
+            onPress={() =>
+              this.setState({
+                incidentType: '',
+                date: '',
+                time: '',
+                description: ''
+              })
+            }
+            style={style.buttonWarning}>
+            <Text>Clear</Text>
+          </TouchableOpacity>
+
+
+          <TouchableOpacity
+            onPress={this.props.close}
+            style={style.buttonCancel}
+            accessibilityLabel={'Cancel'}
+            text={'Cancel'}>
+            <Text>Cancel</Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
     );
   }
@@ -126,8 +152,4 @@ export default reduxForm({ form: 'login' })(
   connect(mapStateToProps)(reportForm)
 );
 
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 100
-  }
-});
+
