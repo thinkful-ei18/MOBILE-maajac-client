@@ -5,7 +5,8 @@ import {
   ScrollView,
   TextInput,
   StyleSheet,
-  AsyncStorage
+  AsyncStorage,
+  TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
@@ -59,9 +60,12 @@ class reportForm extends Component {
 
   render() {
     return (
-      <ScrollView style={style.reportFormContainer}>
-        <Text>Incident Type</Text>
+      <ScrollView
+        style={style.reportFormContainer}>
+        <Text
+          style={style.label}>Incident Type</Text>
         <TextInput
+          style={style.input}
           value={this.state.incidentType}
           onChangeText={value =>
             this.setState({
@@ -70,8 +74,9 @@ class reportForm extends Component {
           }
         />
         <Text
-          style={style.textInput}>Date</Text>
+          style={style.label}>Date</Text>
         <TextInput
+          style={style.input}
           value={this.state.date}
           onChangeText={value =>
             this.setState({
@@ -79,13 +84,17 @@ class reportForm extends Component {
             })
           }
         />
-        <Text>Time</Text>
+        <Text
+          style={style.label}>Time</Text>
         <TextInput
+          style={style.input}
           value={this.state.time}
           onChangeText={value => this.setState({ time: value })}
         />
-        <Text>Description of Incident</Text>
+        <Text
+          style={style.label}>Description of Incident</Text>
         <TextInput
+          style={style.input}
           value={this.state.description}
           multiline={true}
           onChangeText={value =>
@@ -94,7 +103,7 @@ class reportForm extends Component {
             })
           }
         />
-        <Button
+        <TouchableOpacity
           onPress={() =>
             this.setState({
               incidentType: '',
@@ -103,18 +112,29 @@ class reportForm extends Component {
               description: ''
             })
           }
-          title={'Clear'}
-        />
+          style={style.button}>
+          <Text>Clear</Text>
+        </TouchableOpacity>
 
-        <Button
+        <TouchableOpacity
           onPress={() => {
             this.props.close();
             this.props.submit();
             this.submit();
           }}
-          title={'Submit'}
-        />
-        <Button onPress={this.props.close} title={'Cancel'} />
+          style={style.button}
+          text={'Submit'}
+          accessibilityLabel={'Submit'}>
+          <Text>Submit</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={this.props.close}
+          style={style.button}
+          accessibilityLabel={'Cancel'}
+          text={'Cancel'}>
+          <Text>Cancel</Text>
+        </TouchableOpacity>
       </ScrollView>
     );
   }
