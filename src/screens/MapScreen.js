@@ -13,7 +13,7 @@ export default class WardrobeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Map />
+        <Map navigation={this.props.navigation}/>
       </View>
     );
   }
