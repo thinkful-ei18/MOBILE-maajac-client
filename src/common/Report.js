@@ -69,7 +69,18 @@ class reportForm extends Component {
           title={'Clear'}
         />
 
-        <Button onPress={() => console.log('test2')} title={'Delete'} />
+        <Button
+          onPress={() => {
+            obj = {
+              incidentType: this.state.incidentType,
+              date: this.state.date,
+              time: this.state.time,
+              description: this.state.description
+            };
+            console.log(obj);
+          }}
+          title={'Submit'}
+        />
       </ScrollView>
     );
   }
