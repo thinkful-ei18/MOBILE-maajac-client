@@ -103,7 +103,6 @@ export class MapWrapper extends Component {
   }
 
   close() {
-    this.props.dispatch(getMarkers());
     this.setState({ form: false });
   }
   open() {
@@ -158,7 +157,6 @@ export class MapWrapper extends Component {
           <ModalForm
             close={() => this.close()}
             visible={this.state.form}
-            submit={() => this.props.dispatch(getMarkers())}
           />
         </View>
       </View>
