@@ -4,7 +4,7 @@ import Navbar from '../common/Navbar';
 import LoginFormNative from '../common/LoginForm';
 import SignupForm from '../common/SignupForm';
 
-import * as style from '../styles/reportFormStyles'
+import * as style from '../styles/reportFormStyles';
 
 export default class WardrobeScreen extends React.Component {
   constructor(props) {
@@ -20,7 +20,7 @@ export default class WardrobeScreen extends React.Component {
     if (this.state.form === 'login') {
       form = (
         <View style={style.containerLogin}>
-          <LoginFormNative />
+          <LoginFormNative navigation={this.props.navigation} />
           <TouchableOpacity
             onPress={() =>
               this.setState({
@@ -33,7 +33,8 @@ export default class WardrobeScreen extends React.Component {
           >
             <Text>{this.state.buttonText}</Text>
           </TouchableOpacity>
-        </View>);
+        </View>
+      );
     } else {
       form = (
         <View style={style.containerLogin}>
@@ -46,11 +47,12 @@ export default class WardrobeScreen extends React.Component {
                 buttonText: 'Need to create an account?'
               })
             }
-            style={{ marginLeft: 20 }}>
+            style={{ marginLeft: 20 }}
+          >
             <Text>{this.state.buttonText}</Text>
           </TouchableOpacity>
         </View>
-      )
+      );
     }
 
     return (
@@ -60,9 +62,7 @@ export default class WardrobeScreen extends React.Component {
           goTo={() => this.props.navigation.navigate('Map')}
         />
         {form}
-
-
-      </View >
+      </View>
     );
   }
 }
