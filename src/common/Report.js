@@ -69,7 +69,8 @@ class reportForm extends Component {
             })
           }
         />
-        <Text>Date</Text>
+        <Text
+          style={style.textInput}>Date</Text>
         <TextInput
           value={this.state.date}
           onChangeText={value =>
@@ -126,8 +127,4 @@ export default reduxForm({ form: 'login' })(
   connect(mapStateToProps)(reportForm)
 );
 
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 100
-  }
-});
+

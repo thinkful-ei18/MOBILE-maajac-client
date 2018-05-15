@@ -52,12 +52,15 @@ class MyForm extends React.Component {
 				<Text>Username</Text>
 				<TextInput
 					name={'username'}
+					autoFocus={true}
+					autoCorrect={false}
 					validate={[required, nonEmpty]}
 					onChangeText={username => this.setState({ username })}
 				/>
 				<Text>Password</Text>
 				<TextInput
 					name={'password'}
+					autoCorrect={false}
 					validate={[required, nonEmpty]}
 					onChangeText={password => this.setState({ password })}
 					secureTextEntry

@@ -1,5 +1,3 @@
-import { Constants } from 'expo';
-
 const React = require('react-native');
 
 const { StyleSheet } = React;
@@ -7,18 +5,18 @@ const { StyleSheet } = React;
 const Dimensions = require('Dimensions');
 
 const styles = StyleSheet.create({
-  reportContainer: {
-    // width: Dimensions.get('window').width,
-    // height: Dimensions.get('window').height,
-    // alignSelf: 'stretch',
-    // color: 'red',
-    // marginTop: 600
-  },
   reportFormContainer: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
     alignSelf: 'stretch',
+    marginTop: 200,
     color: 'blue'
+  },
+  textInput: {
+    color: 'red',
+    backgroundColor: 'green',
+    borderWidth: 1,
+    borderColor: 'yellow'
   }
 });
 

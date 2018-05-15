@@ -51,12 +51,21 @@ class SignupForm extends React.Component {
 		return (
 			<ScrollView keyboardShouldPersistTaps={'handled'}>
 				<Text>Username</Text>
-				<TextInput name={'username'} onChangeText={username => this.setState({ username })} />
+				<TextInput
+					name={'username'}
+					autoCorrect={false}
+					autoFocus={true}
+					onChangeText={username => this.setState({ username })} />
 				<Text>Password</Text>
-				<TextInput name={'password'} onChangeText={password => this.setState({ password })} secureTextEntry />
+				<TextInput
+					name={'password'}
+					autoCorrect={false}
+					onChangeText={password => this.setState({ password })}
+					secureTextEntry />
 				<Text>Confirm Password</Text>
 				<TextInput
 					name={'passwordConfirm'}
+					autoCorrect={false}
 					onChangeText={passwordConfirm => this.setState({ passwordConfirm })}
 					secureTextEntry
 				/>
