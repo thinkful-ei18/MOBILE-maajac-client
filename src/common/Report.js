@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { Text, Button, ScrollView, TextInput, StyleSheet } from 'react-native';
+import {
+  Text,
+  Button,
+  ScrollView,
+  TextInput,
+  StyleSheet,
+  AsyncStorage
+} from 'react-native';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { newMarker } from '../actions/markerActions';
@@ -21,6 +28,32 @@ class reportForm extends Component {
   handleLocationError(error) {
     this.setState({ locationError: error });
   }
+
+  userAuth = async () => {
+    let authToken = await AsyncStorage.getItem('authToken');
+  };
+
+  submit = () => {
+    AsyncStorage.getItem('authToken')
+      .then(authToken =>
+        fetch('https://safer-server.herokuapp.com/api/new/marker', {
+          method: 'POST',
+          headers: {
+            'Content-type': 'application/json',
+            Authorization: `Bearer ${authToken}`
+          },
+          body: JSON.stringify({
+            incidentType: this.state.incidentType,
+            location: this.props.location,
+            date: this.state.date,
+            description: this.state.description,
+            time: this.state.time
+          })
+        })
+      )
+      .then(res => res.json())
+      .done();
+  };
 
   render() {
     return (
@@ -69,19 +102,7 @@ class reportForm extends Component {
           title={'Clear'}
         />
 
-        <Button
-          onPress={() => {
-            obj = {
-              incidentType: this.state.incidentType,
-              date: this.state.date,
-              time: this.state.time,
-              description: this.state.description,
-              location: this.props.location
-            };
-            console.log(obj);
-          }}
-          title={'Submit'}
-        />
+        <Button onPress={() => this.submit()} title={'Submit'} />
         <Button onPress={this.props.close} title={'Cancel'} />
       </ScrollView>
     );
