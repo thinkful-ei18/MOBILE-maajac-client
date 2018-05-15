@@ -160,26 +160,6 @@ export class MapWrapper extends Component {
             close={() => this.close()}
             visible={this.state.form}
             submit={() => this.props.dispatch(getMarkers())}
-            // placeholder={
-            //   this.state.form2
-            //     ? `Add${this.state.currentSection}`
-            //     : 'Section name'
-            // }
-            // onChangeText={section =>
-            //   this.state.clothing.length === 0
-            //     ? this.setState({ section })
-            //     : this.setState({ clothing: section })
-            // }
-            // value={
-            //   this.state.clothing.length === 0
-            //     ? this.state.section
-            //     : this.state.clothing
-            // }
-            // submit={() =>
-            //   this.state.form2
-            //     ? this.addClothing(this.state.currentSection)
-            //     : this.addWardrobe()
-            // }
           />
         </View>
       </View>
