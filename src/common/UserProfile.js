@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, Image, TouchableOpacity, AsyncStorage } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  AsyncStorage
+} from 'react-native';
 import { connect } from 'react-redux';
 
 // import { API_BASE_URL } from '../../config';
@@ -8,14 +14,12 @@ import * as dashboardStyles from '../styles/dashboardStyles';
 
 class UserProfile extends Component {
   logout = () => {
-    AsyncStorage.clear()
+    AsyncStorage.clear();
   };
-  
-  render() {
 
+  render() {
     return (
       <View style={dashboardStyles.userProfile}>
-
         {/* <View style={dashboardStyles.userPicDiv}>
           <Image 
             source={{uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png'}}
@@ -25,16 +29,19 @@ class UserProfile extends Component {
         </View> */}
 
         <View style={dashboardStyles.userInfoDiv}>
-          <Text 
-            style={dashboardStyles.userUsername} >
+          <Text style={dashboardStyles.userUsername}>
             {this.props.currentUser.username}
           </Text>
         </View>
 
-        <TouchableOpacity onPress={this.logout}>
-					<Text>Log Out</Text>
-				</TouchableOpacity>
-
+        <TouchableOpacity
+          onPress={() => {
+            this.logout;
+            this.props.navigation.navigate('Login');
+          }}
+        >
+          <Text>Log Out</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -42,13 +49,12 @@ class UserProfile extends Component {
 
 export const mapStateToProps = state => ({
   // loggedIn: state.auth.currentUser !== null,
-  currentUser: state.auth.currentUser ? state.auth.currentUser : '',
+  currentUser: state.auth.currentUser ? state.auth.currentUser : ''
   // ppModal: state.modal.ppModal,
   // profilePicture: state.auth.currentUser.profilePicture ? state.auth.currentUser.profilePicture : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
 });
 
 export default connect(mapStateToProps)(UserProfile);
-
 
 /*
 Resources:

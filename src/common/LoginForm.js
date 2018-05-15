@@ -1,83 +1,87 @@
 'use strict';
 /*global fetch:false*/
 import React from 'react';
-import { ScrollView, Text, TouchableOpacity, TextInput, AsyncStorage } from 'react-native';
+import {
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  AsyncStorage
+} from 'react-native';
 import { API_BASE_URL } from '../../config';
 
-import * as style from '../styles/login-signup-formStyles'
+import * as style from '../styles/login-signup-formStyles';
 
 class MyForm extends React.Component {
-	constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
 
-		this.state = {
-			username: '',
-			password: '',
-		};
-	}
-	componentDidMount() {
-		this.loadInitialState().done();
-	}
-	loadInitialState = async () => {
-		const value = await AsyncStorage.getItem('authToken');
-		if (value !== null) {
-			console.log(`async storage retrieved: ${value}`);
-		}
-	};
-	login = () => {
-		return fetch(`${API_BASE_URL}/auth/login`, {
-			method: 'POST',
-			headers: {
-				'Content-type': 'application/json',
-			},
-			body: JSON.stringify({
-				username: this.state.username,
-				password: this.state.password,
-			}),
-		})
-			.then(res => res.json())
-			.then(res => {
-				if (res.authToken) {
-					AsyncStorage.setItem('authToken', res.authToken);
-					//this.props.navigation.navigate('Map');
-				} else {
-					console.log(`Message: ${res.message}`);
-				}
-			})
-			.done();
-	};
+    this.state = {
+      username: '',
+      password: ''
+    };
+  }
+  componentDidMount() {
+    this.loadInitialState().done();
+  }
+  loadInitialState = async () => {
+    const value = await AsyncStorage.getItem('authToken');
+    if (value !== null) {
+      console.log(`async storage retrieved: ${value}`);
+    }
+  };
+  login = () => {
+    return fetch(`${API_BASE_URL}/auth/login`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password
+      })
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (res.authToken) {
+          AsyncStorage.setItem('authToken', res.authToken);
+          this.props.navigation.navigate('Map');
+        } else {
+          console.log(`Message: ${res.message}`);
+        }
+      })
+      .done();
+  };
 
-	render() {
-		return (
-			<ScrollView
-				// style={style.container}
-				keyboardShouldPersistTaps={'handled'}>
-				<Text style={style.label}>Username</Text>
-				<TextInput
-					style={style.input}
-					name={'username'}
-					autoFocus={true}
-					autoCorrect={false}
-					onChangeText={username => this.setState({ username })}
-				/>
-				<Text
-					style={style.label}>Password</Text>
-				<TextInput
-					style={style.input}
-					name={'password'}
-					autoCorrect={false}
-					maxLength={72}
-					onChangeText={password => this.setState({ password })}
-					secureTextEntry={true}
-				/>
-				<TouchableOpacity
-					onPress={this.login}
-					style={style.button}>
-					<Text>Login</Text>
-				</TouchableOpacity>
-			</ScrollView>
-		);
-	}
+  render() {
+    return (
+      <ScrollView
+        // style={style.container}
+        keyboardShouldPersistTaps={'handled'}
+      >
+        <Text style={style.label}>Username</Text>
+        <TextInput
+          style={style.input}
+          name={'username'}
+          autoFocus={true}
+          autoCorrect={false}
+          onChangeText={username => this.setState({ username })}
+        />
+        <Text style={style.label}>Password</Text>
+        <TextInput
+          style={style.input}
+          name={'password'}
+          autoCorrect={false}
+          maxLength={72}
+          onChangeText={password => this.setState({ password })}
+          secureTextEntry={true}
+        />
+        <TouchableOpacity onPress={this.login} style={style.button}>
+          <Text>Login</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    );
+  }
 }
 
 export default MyForm;
