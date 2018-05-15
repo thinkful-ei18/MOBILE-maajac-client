@@ -6,7 +6,7 @@ const Dimensions = require('Dimensions');
 const styles = StyleSheet.create({
   containerLogin: {
     flex: 1,
-    marginTop: 50,
+    paddingTop: 80,
     marginLeft: 80,
     paddingHorizontal: 90,
 

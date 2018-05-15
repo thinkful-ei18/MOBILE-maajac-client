@@ -36,7 +36,7 @@ export default class WardrobeScreen extends React.Component {
         </View>);
     } else {
       form = (
-        <View style={style.container}>
+        <View style={style.containerLogin}>
           <SignupForm />
           <TouchableOpacity
             onPress={() =>
