@@ -46,7 +46,6 @@ class MyForm extends React.Component {
         if (res.authToken) {
           AsyncStorage.setItem('authToken', res.authToken);
           this.props.navigation.navigate('Map');
-          //this.props.navigation.navigate('Map');
         } else {
           console.log(`Message: ${res.message}`);
         }
