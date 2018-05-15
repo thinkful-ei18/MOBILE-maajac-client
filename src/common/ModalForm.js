@@ -26,7 +26,7 @@ const ModalForm = ({
       transparent={false}
       visible={visible}
     >
-      <Report close={() => close()} submit={() => submit()} />
+      <Report close={() => close()}/>
     </Modal>
   );
 };
