@@ -3,7 +3,8 @@ import {
   View,
   Text,
   TouchableOpacity,
-  AsyncStorage
+  AsyncStorage,
+  Image
 } from 'react-native';
 import { connect } from 'react-redux';
 
@@ -18,31 +19,41 @@ class UserProfile extends Component {
   };
 
   render() {
+    console.log('PROPS:', this.props);
 
     return (
-      <View style={dashboardStyles.userProfile}>
+      <View style={dashboardStyles.userProfileContainer}>
 
         <View style={dashboardStyles.userInfoDiv}>
+          <Image
+            source={{ uri: this.props.profilePicture }}
+            alt='profile-pic'
+            style={dashboardStyles.profilePic}
+          />
+
           <Text style={dashboardStyles.userUsername}>
-            {this.props.currentUser.username}
+            Welcome, {this.props.currentUser.username}
           </Text>
         </View>
 
-        <TouchableOpacity
-          onPress={() => {
-            this.logout();
-            this.props.navigation.navigate('Map');
-          }}
-        >
-          <Text>Log Out</Text>
-        </TouchableOpacity>
+        <View style={dashboardStyles.logOutButton}>
+          <TouchableOpacity
+            onPress={() => {
+              this.logout;
+              this.props.navigation.navigate('Map');
+            }}
+          >
+          <Text style={dashboardStyles.logOutButton}>Log Out</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
 }
 
 export const mapStateToProps = state => ({
-  currentUser: state.auth.currentUser ? state.auth.currentUser : ''
+  currentUser: state.auth.currentUser ? state.auth.currentUser : '',
+  profilePicture: state.auth.currentUser !== null ? state.auth.currentUser.profilePicture : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
 });
 
 export default connect(mapStateToProps)(UserProfile);
