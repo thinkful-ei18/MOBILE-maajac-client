@@ -8,7 +8,9 @@ import {
   TextInput,
   AsyncStorage
 } from 'react-native';
+
 import { API_BASE_URL } from '../../config';
+import { setAuthToken } from '../actions/userActions';
 
 import * as style from '../styles/login-signup-formStyles';
 
@@ -66,8 +68,9 @@ class SignupForm extends React.Component {
       .then(res => {
         console.log(res);
         if (res.authToken) {
+          this.props.navigation.dispatch(setAuthToken(res.authToken));
           AsyncStorage.setItem('authToken', res.authToken);
-          this.props.navigation.navigate('Map');
+          // this.props.navigation.navigate('Map');
         } else {
           console.log(`Error: Sign Up Failed`);
         }
