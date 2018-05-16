@@ -9,6 +9,7 @@ import {
   AsyncStorage
 } from 'react-native';
 import { API_BASE_URL } from '../../config';
+import { setAuthToken } from '../actions/userActions';
 
 import * as style from '../styles/login-signup-formStyles';
 
@@ -18,7 +19,8 @@ class MyForm extends React.Component {
 
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      // authToken: null
     };
   }
   componentDidMount() {
@@ -30,7 +32,9 @@ class MyForm extends React.Component {
       console.log(`async storage retrieved: ${value}`);
     }
   };
+
   login = () => {
+    console.log('received dispatch')
     return fetch(`${API_BASE_URL}/auth/login`, {
       method: 'POST',
       headers: {
@@ -44,8 +48,10 @@ class MyForm extends React.Component {
       .then(res => res.json())
       .then(res => {
         if (res.authToken) {
+          console.log('got an auth token')
           AsyncStorage.setItem('authToken', res.authToken);
-          this.props.navigation.navigate('Map');
+          this.props.navigation.dispatch(setAuthToken(res.authToken))
+          // this.props.navigation.navigate('Map');
         } else {
           console.log(`Message: ${res.message}`);
         }
