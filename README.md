@@ -25,7 +25,7 @@ SafeReport/safeR is an app that aims to keep the community safer by making sure 
 * Mocha
 * Chai
 
-#Mobile Tech Stack
+# Mobile Tech Stack
 ## Front End
 * React Native
 * Redux
