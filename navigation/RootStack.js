@@ -22,12 +22,12 @@ export const RootStack = createStackNavigator({
       header: null
     }
   },
-  Dashboard: {
-    screen: DashboardScreen,
-    navigationOptions: {
-      header: null
-    }
-  }
+  // Dashboard: {
+  //   screen: DashboardScreen,
+  //   navigationOptions: {
+  //     header: null
+  //   }
+  // }
 });
 
 // "TO HANDLE YOUR APP'S NAVIGATION STATE IN REDUX, YOU CAN PASS YOUR OWN NAVIGATION PROP TO A NAVIGATOR"
