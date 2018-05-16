@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { AsyncStorage, View } from 'react-native';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
 
 import AppWithNavigationState from '../navigation/RootStack';
 import Tabs from '../navigation/Tabs';
-import { setAuthToken } from './actions/userActions';
 
 import * as styles from './styles/rootStyles';
 
@@ -14,16 +13,11 @@ class Root extends Component {
 
   render() {
 
-    AsyncStorage.getItem('authToken')
-      .then(authToken => console.log('ROOT AUTH TOKEN:', authToken))
-
     let navigationStyle;
     if (this.props.authToken !== null) {
-      console.log('logged in')
       navigationStyle = <Tabs />;
     }
     else {
-      console.log('logged out')
       navigationStyle = <AppWithNavigationState />;
     }
 
@@ -35,14 +29,12 @@ class Root extends Component {
   }
 }
 
-export const mapStateToProps = state => {
-  console.log('ROOT STATE:', state)
-  return {
+export const mapStateToProps = state => ({
     authToken: state.auth.authToken
-  }
-}
+  })
 
 export default connect(mapStateToProps)(Root)
+
 
 /*
 Resources:
