@@ -37,8 +37,12 @@ class DashboardScreen extends Component {
   }
 
   render() {
+    if (this.props.currentUser === '') {
+      this.props.navigation.navigate('Login');
+    }
+    
     const reports = this.props.markersFromServer;
-    let username;
+    // let username;
 
     let userReports = reports.map(report => (
       <View style={styles.reportCard} key={report._id}>
