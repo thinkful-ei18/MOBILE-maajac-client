@@ -31,8 +31,8 @@ class MarkerList extends Component {
   }
 
   deleteMarker(markerId) {
-    console.log('clicked')
-    this.props.dispatch(deleteMarkerDashboard({ markerId }));
+    console.log(markerId)
+    this.props.dispatch(deleteMarkerDashboard(markerId));
   }
 
   render() {
@@ -43,7 +43,7 @@ class MarkerList extends Component {
           <FlatList
             data={this.props.markersFromServer}
             renderItem={(marker, index) => (
-              <Card
+              < Card
                 key={index}
                 title={marker.item.incidentType}
               >
@@ -54,11 +54,12 @@ class MarkerList extends Component {
                   On {marker.item.date} at {marker.item.time}
                 </Text>
                 <Button
-                  onPress={() => this.deleteMarker(marker.id)}
+                  onPress={() => this.deleteMarker(marker.item._id)}
                   backgroundColor='#f40331'
                   buttonStyle={{ borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, marginTop: 10 }}
                   title='DELETE MARKER' />
               </Card>
+
             )}
           />
         </List>
