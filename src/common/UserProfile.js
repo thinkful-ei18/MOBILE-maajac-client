@@ -2,24 +2,28 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Image,
   TouchableOpacity,
-  AsyncStorage
+  AsyncStorage,
+  Image
 } from 'react-native';
 import { connect } from 'react-redux';
 
-// import { API_BASE_URL } from '../../config';
+import { clearAuth } from '../actions/userActions';
 
 import * as dashboardStyles from '../styles/dashboardStyles';
 
 class UserProfile extends Component {
   logout = () => {
     AsyncStorage.clear();
+    this.props.dispatch(clearAuth());
   };
 
   render() {
+    console.log('PROPS:', this.props);
+
     return (
       <View style={dashboardStyles.userProfileContainer}>
+
         <View style={dashboardStyles.userInfoDiv}>
           <Image
             source={{ uri: this.props.profilePicture }}
@@ -35,11 +39,11 @@ class UserProfile extends Component {
         <View style={dashboardStyles.logOutButton}>
           <TouchableOpacity
             onPress={() => {
-              this.logout;
-              this.props.navigation.navigate('Login');
+              this.logout();
+              this.props.navigation.navigate('Map');
             }}
           >
-            <Text style={dashboardStyles.logOutButton}>Log Out</Text>
+          <Text style={dashboardStyles.logOutButton}>Log Out</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -48,15 +52,8 @@ class UserProfile extends Component {
 }
 
 export const mapStateToProps = state => ({
-  // loggedIn: state.auth.currentUser !== null,
   currentUser: state.auth.currentUser ? state.auth.currentUser : '',
-  // ppModal: state.modal.ppModal,
   profilePicture: state.auth.currentUser !== null ? state.auth.currentUser.profilePicture : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
 });
 
 export default connect(mapStateToProps)(UserProfile);
-
-/*
-Resources:
- - https://facebook.github.io/react-native/docs/image.html
-*/

@@ -4,7 +4,6 @@ import { createStackNavigator } from 'react-navigation';
 
 import LoginScreen from '../src/screens/LoginScreen';
 import MapScreen from '../src/screens/MapScreen';
-import DashboardScreen from '../src/screens/DashboardScreen';
 import { addListener } from './redux';
 
 
@@ -21,13 +20,7 @@ export const RootStack = createStackNavigator({
     navigationOptions: {
       header: null
     }
-  },
-  Dashboard: {
-    screen: DashboardScreen,
-    navigationOptions: {
-      header: null
-    }
-  },
+  }
 });
 
 // "TO HANDLE YOUR APP'S NAVIGATION STATE IN REDUX, YOU CAN PASS YOUR OWN NAVIGATION PROP TO A NAVIGATOR"

@@ -134,7 +134,7 @@ export const getMarkersDashboard = () => dispatch => {
 
 export const deleteMarkerDashboard = marker => dispatch => {
   AsyncStorage.getItem('authToken')
-    .then(authToken => fetch(`${API_BASE_URL}/markers/delete`, {
+    .then( authToken => fetch(`${API_BASE_URL}/markers/delete`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

@@ -3,7 +3,7 @@ import { StyleSheet, /* Text, */ View } from 'react-native';
 // import Navbar from '../common/Navbar';
 import Map from '../common/MapWrapper';
 
-export default class WardrobeScreen extends React.Component {
+export default class MapScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
