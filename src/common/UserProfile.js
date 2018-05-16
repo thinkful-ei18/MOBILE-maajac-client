@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 
 import { clearAuth } from '../actions/userActions';
 
-import * as dashboardStyles from '../styles/dashboardStyles';
+import * as styles from '../styles/dashboardStyles';
 
 class UserProfile extends Component {
   logout = () => {
@@ -22,29 +22,29 @@ class UserProfile extends Component {
     console.log('PROPS:', this.props);
 
     return (
-      <View style={dashboardStyles.userProfileContainer}>
+      <View style={styles.userProfileContainer}>
 
-        <View style={dashboardStyles.userInfoDiv}>
+        <View style={styles.userInfoDiv}>
           <Image
             source={{ uri: this.props.profilePicture }}
             alt='profile-pic'
-            style={dashboardStyles.profilePic}
+            style={styles.profilePic}
           />
-
-          <Text style={dashboardStyles.userUsername}>
-            Welcome, {this.props.currentUser.username}
-          </Text>
         </View>
 
         <View>
+          <Text style={styles.userUsername}>
+            Welcome, {this.props.currentUser.username}
+          </Text>
+
           <TouchableOpacity
             onPress={() => {
               this.logout();
               this.props.navigation.navigate('Map');
             }}
-            style={dashboardStyles.logOutButton}
+            style={styles.logOutButton}
           >
-          <Text style={dashboardStyles.logOutButton}>Log Out</Text>
+          <Text style={styles.logOutButton}>Log Out</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -54,7 +54,7 @@ class UserProfile extends Component {
 
 export const mapStateToProps = state => ({
   currentUser: state.auth.currentUser ? state.auth.currentUser : '',
-  profilePicture: state.auth.profilePicture ? state.auth.profilePicture : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
+  profilePicture: state.auth.currentUser !== null ? state.auth.currentUser.profilePicture : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
 });
 
 export default connect(mapStateToProps)(UserProfile);

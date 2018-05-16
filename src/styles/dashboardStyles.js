@@ -10,19 +10,24 @@ var dashboardStyles = StyleSheet.create({
 
   // USER PROFILE
   userProfileContainer: {
+    flexDirection: 'row',
+    // marginHorizontal: 'auto',
     // marginTop: 40,
     height: 150,
     minHeight: 120,
     // paddingBottom: 10,
     marginBottom: 15,
     backgroundColor: '#3b4141',
-    paddingVertical: 20
+    // paddingVertical: 20,
+    paddingHorizontal: 25,
+    paddingTop: 25,
+    paddingBottom: 10
     
   },
   logOutButton: {
     backgroundColor: '#7bc087',
     alignSelf: 'center',
-    width: 120,
+    width: 200,
     height: 30,
     textAlign: 'center',
     color: 'white',
@@ -30,24 +35,30 @@ var dashboardStyles = StyleSheet.create({
   },
   profilePic: {
     marginRight: 20,
-    width: 50,
-    height: 50
+    width: 80,
+    height: 80
 
   },
   userInfoDiv: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'row',
     marginBottom: 40,
+    paddingTop: 10
   },
   userUsername: {
-    fontSize: 15,
     backgroundColor: '#2e3434',
+    alignSelf: 'center',
+    width:200,
+    height: 35,
+    textAlign: 'center',
     color: "#ffffff",
-    paddingVertical: 10,
-    paddingHorizontal: 8,
-    lineHeight: 18
+    justifyContent: 'center',
+    // fontSize: 15,
+    paddingVertical: 5,
+    paddingHorizontal: 5,
+    marginBottom: 10,
+    // lineHeight: 18,
     // height: 20
   },
 
