@@ -115,7 +115,7 @@ export class MapWrapper extends Component {
       <View styles={{ justifyContent: 'center' }}>
         <Navbar
           header={this.state.header}
-          goTo={() => this.props.navigation.navigate('Dashboard')}
+          
           back={() => this.props.navigation.goBack()}
           plus={() => this.open()}
         />
@@ -186,3 +186,6 @@ export default connect(mapStateToProps)(MapWrapper);
   - https://stackoverflow.com/questions/33804500/screen-width-in-react-native
   - https://facebook.github.io/react-native/docs/dimensions.html
  */
+
+
+ // removed from line 118 : goTo={() => this.props.navigation.navigate('Dashboard')}
