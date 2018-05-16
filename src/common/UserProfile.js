@@ -21,6 +21,10 @@ class UserProfile extends Component {
   };
 
   render() {
+    // if (this.props.currentUser === '') {
+    //   this.props.navigation.navigate('Login');
+    // }
+
     return (
       <View style={dashboardStyles.userProfile}>
         {/* <View style={dashboardStyles.userPicDiv}>
@@ -40,7 +44,7 @@ class UserProfile extends Component {
         <TouchableOpacity
           onPress={() => {
             this.logout();
-            this.props.navigation.navigate('Login');
+            this.props.navigation.navigate('Map');
           }}
         >
           <Text>Log Out</Text>
