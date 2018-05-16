@@ -32,11 +32,12 @@ class DashboardScreen extends Component {
     };
   }
 
-  onClick(markerId) {
+  onDelete(markerId) {
     this.props.dispatch(deleteMarkerDashboard({ markerId }));
   }
 
   render() {
+    console.log('on dashboard')
     if (this.props.currentUser === '') {
       this.props.navigation.navigate('Login');
     }
@@ -57,7 +58,7 @@ class DashboardScreen extends Component {
         <Text style={styles.incidentDescriptionTitle}>Description:</Text>
         <Text style={styles.incidentDescription}>{report.description}</Text>
         <Button
-          onPress={() => this.onClick(report._id)}
+          onPress={() => this.onDelete(report._id)}
           title="Delete"
           id={report._id}
           style={styles.deleteIncident}
