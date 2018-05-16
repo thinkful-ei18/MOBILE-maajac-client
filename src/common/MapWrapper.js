@@ -13,7 +13,6 @@ import { getMarkers } from '../actions/markerActions';
 // import { styles } from '../styles/mapStyles';
 import * as styles from '../styles/mapStyles';
 
-
 const Marker = MapView.Marker;
 
 // function to get the coordinates of the user's current location (if they approve the request)
@@ -110,15 +109,16 @@ export class MapWrapper extends Component {
     this.setState({ form: true });
   }
 
-  // this.props.authToken !== null ? back= {() => {}} : back = {() => this.props.navigation.goBack()}
-
   render() {
     return (
       <View styles={{ justifyContent: 'center' }}>
         <Navbar
           header={this.state.header}
-          
-          back={this.props.authToken !== null ? false : () => this.props.navigation.goBack()}
+          back={
+            this.props.authToken !== null
+              ? false
+              : () => this.props.navigation.goBack()
+          }
           plus={() => this.open()}
         />
         <View style={styles.container}>
@@ -157,10 +157,7 @@ export class MapWrapper extends Component {
               title={'Incident Pin'}
             />
           </MapView>
-          <ModalForm
-            close={() => this.close()}
-            visible={this.state.form}
-          />
+          <ModalForm close={() => this.close()} visible={this.state.form} />
         </View>
       </View>
     );
@@ -171,13 +168,14 @@ export const mapStateToProps = state => ({
   markersFromServer: state.markers.allMarkers,
   indicatorPin: state.report.userLocation
     ? {
-      latitude: state.report.userLocation.lat,
-      longitude: state.report.userLocation.lng
-    }
+        latitude: state.report.userLocation.lat,
+        longitude: state.report.userLocation.lng
+      }
     : {
-      latitude: 37.78825,
-      longitude: -122.4324
-    }
+        latitude: 37.78825,
+        longitude: -122.4324
+      },
+  authToken: state.auth.authToken
 });
 
 export default connect(mapStateToProps)(MapWrapper);
@@ -189,5 +187,4 @@ export default connect(mapStateToProps)(MapWrapper);
   - https://facebook.github.io/react-native/docs/dimensions.html
  */
 
-
- // removed from line 118 : goTo={() => this.props.navigation.navigate('Dashboard')}
+// removed from line 118 : goTo={() => this.props.navigation.navigate('Dashboard')}
