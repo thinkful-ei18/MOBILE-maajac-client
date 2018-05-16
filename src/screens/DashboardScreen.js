@@ -34,7 +34,6 @@ class DashboardScreen extends Component {
       <View style={styles.view}>
         <Navbar
           header={this.state.header}
-          plus={() => this.add()}
           back={() => this.props.navigation.goBack()}
         />
         <UserProfile navigation={this.props.navigation} />
