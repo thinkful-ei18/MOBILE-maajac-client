@@ -29,8 +29,6 @@ SafeReport/safeR is an app that aims to keep the community safer by making sure 
 ## Front End
 * React Native
 * Redux
-* HTML
-* CSS
 
 ## Back End
 * Node
