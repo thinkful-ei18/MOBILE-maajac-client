@@ -119,7 +119,9 @@ export class MapWrapper extends Component {
               ? false
               : () => this.props.navigation.goBack()
           }
-          plus={() => this.open()}
+          plus={this.props.authToken !== null
+              ? () => this.open()
+              : false}
         />
         <View style={styles.container}>
           <MapView
@@ -146,7 +148,6 @@ export class MapWrapper extends Component {
                 }}
                 title={marker.incidentType}
                 description={marker.description}
-                // image={this.markerImage(marker.incidentType)}
                 key={index}
               >
                 {this.markerImage(marker.incidentType)}
@@ -186,5 +187,3 @@ export default connect(mapStateToProps)(MapWrapper);
   - https://stackoverflow.com/questions/33804500/screen-width-in-react-native
   - https://facebook.github.io/react-native/docs/dimensions.html
  */
-
-// removed from line 118 : goTo={() => this.props.navigation.navigate('Dashboard')}
