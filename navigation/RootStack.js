@@ -27,7 +27,7 @@ export const RootStack = createStackNavigator({
     navigationOptions: {
       header: null
     }
-  }
+  },
 });
 
 // "TO HANDLE YOUR APP'S NAVIGATION STATE IN REDUX, YOU CAN PASS YOUR OWN NAVIGATION PROP TO A NAVIGATOR"

@@ -7,54 +7,39 @@ var dashboardStyles = StyleSheet.create({
   view: {
     flex: 1
   },
-  
-
-  // USER REPORTS
-  userReports: {
-
-  },
-  reportCard: {
-
-  },
-  incidentType: {
-
-  },
-  reportIcon: {
-
-  },
-  incidentDate: {
-
-  },
-  incidentDescriptionTitle: {
-
-  },
-  incidentDescription: {
-
-  },
-  deleteIncident:{
-
-  },
-
 
   // USER PROFILE
-  userProfile: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginHorizontal: 30
+  userProfileContainer: {
+    marginTop: 40,
+    height: 90,
+    minHeight: 90,
+    // paddingBottom: 10,
+    marginBottom: 15
   },
-  userPicDiv:{
-
+  logOutButton: {
+    backgroundColor: '#f40331',
+    alignSelf: 'center',
+    width: 120,
+    height: 30,
+    textAlign: 'center',
+    color: 'white',
+    paddingTop: 5
   },
   profilePic: {
+    marginRight: 20,
     width: 50,
     height: 50
 
   },
-   userInfoDiv: {
+  userInfoDiv: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    marginBottom: 40
   },
   userUsername: {
-    color: 'red'
+    fontSize: 18
   }
 
 })

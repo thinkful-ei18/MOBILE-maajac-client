@@ -118,13 +118,13 @@ export const getMarkersDashboard = () => dispatch => {
 
   AsyncStorage.getItem('authToken')
     .then(authToken => fetch(`${API_BASE_URL}/markers/dashboard`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${authToken}`
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${authToken}`
       }
     })
-  )
+    )
     .then(res => res.json())
     .then(data => dispatch(getMarkerSuccess(data)))
     .catch(err => {
@@ -134,15 +134,15 @@ export const getMarkersDashboard = () => dispatch => {
 
 export const deleteMarkerDashboard = marker => dispatch => {
   AsyncStorage.getItem('authToken')
-    .then( authToken => fetch(`${API_BASE_URL}/markers/delete`, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${authToken}`
-    },
-    body: JSON.stringify(marker)
-  })
-)
+    .then(authToken => fetch(`${API_BASE_URL}/markers/delete`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${authToken}`
+      },
+      body: JSON.stringify(marker)
+    })
+    )
     .then(() => dispatch(getMarkersDashboard()))
     .catch(err => {
       dispatch(getMarkerError(err));
