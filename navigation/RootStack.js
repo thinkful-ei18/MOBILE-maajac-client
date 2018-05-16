@@ -10,12 +10,6 @@ import { addListener } from './redux';
 
 // SCREENS NECESSARY FOR ROUTING
 export const RootStack = createStackNavigator({
-  Dashboard: {
-    screen: DashboardScreen,
-    navigationOptions: {
-      header: null
-    }
-  },
   Login: {
     screen: LoginScreen,
     navigationOptions: {
@@ -24,6 +18,12 @@ export const RootStack = createStackNavigator({
   },
   Map: {
     screen: MapScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
+  Dashboard: {
+    screen: DashboardScreen,
     navigationOptions: {
       header: null
     }

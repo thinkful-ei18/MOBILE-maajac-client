@@ -20,6 +20,7 @@ class MarkerList extends Component {
   componentDidMount() {
     this.props.dispatch(getCurrentUser());
     this.props.dispatch(getMarkersDashboard());
+    console.log(this.props.markersFromServer)
   }
 
   constructor(props) {
@@ -29,38 +30,12 @@ class MarkerList extends Component {
     };
   }
 
-  onClick(markerId) {
+  deleteMarker(markerId) {
+    console.log('clicked')
     this.props.dispatch(deleteMarkerDashboard({ markerId }));
   }
 
   render() {
-    // const reports = this.props.markersFromServer;
-
-
-    // let userReports = reports.map(report => (
-    //   <View style={styles.reportCard} key={report._id}>
-    //     <Text style={styles.incidentType}>{report.incidentType}</Text>
-    //     <Image
-    //       style={styles.reportIcon}
-    //       alt={`Report icon for ${report.incidentType}`}
-    //       source={{ uri: 'report.icon' }}
-    //     />
-    //     <Text style={styles.incidentDate}>Date: {report.date}</Text>
-    //     <Text style={styles.incidentDescriptionTitle}>Description:</Text>
-    //     <Text style={styles.incidentDescription}>{report.description}</Text>
-    //     <Button
-    //       onPress={() => this.onClick(report._id)}
-    //       title="Delete"
-    //       id={report._id}
-    //       style={styles.deleteIncident}
-    //       accessibilityLabel="Delete this incident report"
-    //     >
-    //       Delete
-    //     </Button>
-    //   </View>
-    // ));
-    // <View style={styles.userReports}>{userReports}</View>
-
 
     return (
       <ScrollView>
@@ -69,6 +44,7 @@ class MarkerList extends Component {
             data={this.props.markersFromServer}
             renderItem={(marker, index) => (
               <Card
+                key={index}
                 title={marker.item.incidentType}
               >
                 <Text style={{ marginBottom: 10 }}>
@@ -78,7 +54,7 @@ class MarkerList extends Component {
                   On {marker.item.date} at {marker.item.time}
                 </Text>
                 <Button
-                  onPress={this.onClick}
+                  onPress={() => this.deleteMarker(marker.id)}
                   backgroundColor='#f40331'
                   buttonStyle={{ borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, marginTop: 10 }}
                   title='DELETE MARKER' />
