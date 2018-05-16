@@ -11,14 +11,10 @@ var dashboardStyles = StyleSheet.create({
   // USER PROFILE
   userProfileContainer: {
     flexDirection: 'row',
-    // marginHorizontal: 'auto',
-    // marginTop: 40,
     height: 150,
     minHeight: 120,
-    // paddingBottom: 10,
     marginBottom: 15,
     backgroundColor: '#3b4141',
-    // paddingVertical: 20,
     paddingHorizontal: 25,
     paddingTop: 25,
     paddingBottom: 10
@@ -54,12 +50,9 @@ var dashboardStyles = StyleSheet.create({
     textAlign: 'center',
     color: "#ffffff",
     justifyContent: 'center',
-    // fontSize: 15,
     paddingVertical: 5,
     paddingHorizontal: 5,
     marginBottom: 10,
-    // lineHeight: 18,
-    // height: 20
   },
 
   // MARKER LIST
