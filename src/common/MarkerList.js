@@ -20,7 +20,6 @@ class MarkerList extends Component {
   componentDidMount() {
     this.props.dispatch(getCurrentUser());
     this.props.dispatch(getMarkersDashboard());
-    console.log(this.props.markersFromServer)
   }
 
   constructor(props) {
@@ -32,7 +31,9 @@ class MarkerList extends Component {
 
   deleteMarker(markerId) {
     console.log(markerId)
-    this.props.dispatch(deleteMarkerDashboard(markerId));
+    this.props.dispatch(deleteMarkerDashboard({ markerId }));
+    this.props.dispatch(getMarkersDashboard());
+
   }
 
   render() {
@@ -41,6 +42,7 @@ class MarkerList extends Component {
       <ScrollView>
         <List>
           <FlatList
+            style={{ paddingBottom: 10 }}
             data={this.props.markersFromServer}
             renderItem={(marker, index) => (
               < Card
