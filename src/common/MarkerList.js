@@ -5,7 +5,7 @@ import {
   FlatList,
   ScrollView /* AsyncStorage */
 } from 'react-native';
-import { List, ListItem } from "react-native-elements";
+import { List, Card, Button } from "react-native-elements";
 import { connect } from 'react-redux';
 
 import {
@@ -68,17 +68,21 @@ class MarkerList extends Component {
           <FlatList
             data={this.props.markersFromServer}
             renderItem={(marker, index) => (
-
-              < ListItem
-                roundAvatar
-                title={`${marker.item.incidentType} on ${marker.item.date}`}
-                subtitle={marker.item.description}
-                avatar={marker.item.icon}
-                badge={{ value: 'delete', containerStyle: { backgroundColor: 'red' } }}
-                onPress={this.onClick}
-                chevronColor={'white'}
-                keyExtractor={marker => marker.id}
-              />
+              <Card
+                title={marker.item.incidentType}
+              >
+                <Text style={{ marginBottom: 10 }}>
+                  {marker.item.description}
+                </Text>
+                <Text style={{ marginBottom: 10, fontStyle: 'italic', color: '#5F5F5F' }}>
+                  On {marker.item.date} at {marker.item.time}
+                </Text>
+                <Button
+                  onPress={this.onClick}
+                  backgroundColor='#f40331'
+                  buttonStyle={{ borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, marginTop: 10 }}
+                  title='DELETE MARKER' />
+              </Card>
             )}
           />
         </List>
@@ -97,7 +101,4 @@ export const mapStateToProps = state => {
 
 export default connect(mapStateToProps)(MarkerList);
 
-/*
-Resources:
- - https://facebook.github.io/react-native/docs/button.html
-*/
+
