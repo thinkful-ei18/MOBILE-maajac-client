@@ -39,7 +39,7 @@ class UserProfile extends Component {
         <View style={dashboardStyles.logOutButton}>
           <TouchableOpacity
             onPress={() => {
-              this.logout;
+              this.logout();
               this.props.navigation.navigate('Map');
             }}
           >
