@@ -18,18 +18,8 @@ class reportForm extends Component {
 			date: '',
 			time: '',
 			description: '',
-			isVisible: false,
 		};
 	}
-
-	_showDateTimePicker = () => this.setState({ isVisible: true });
-
-	_hideDateTimePicker = () => this.setState({ isVisible: false });
-
-	_handleDatePicked = date => {
-		console.log('A date has been picked: ', date);
-		this._hideDateTimePicker();
-	};
 
 	handleLocationError(error) {
 		this.setState({ locationError: error });
