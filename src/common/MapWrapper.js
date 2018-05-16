@@ -110,13 +110,15 @@ export class MapWrapper extends Component {
     this.setState({ form: true });
   }
 
+  // this.props.authToken !== null ? back= {() => {}} : back = {() => this.props.navigation.goBack()}
+
   render() {
     return (
       <View styles={{ justifyContent: 'center' }}>
         <Navbar
           header={this.state.header}
           
-          back={() => this.props.navigation.goBack()}
+          back={this.props.authToken !== null ? false : () => this.props.navigation.goBack()}
           plus={() => this.open()}
         />
         <View style={styles.container}>
