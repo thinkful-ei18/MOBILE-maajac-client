@@ -2,7 +2,6 @@ import React from 'react';
 import { createBottomTabNavigator } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-// import LoginScreen from '../src/screens/LoginScreen';
 import MapScreen from '../src/screens/MapScreen';
 import DashboardScreen from '../src/screens/DashboardScreen';
 
@@ -18,26 +17,24 @@ export default createBottomTabNavigator(
         const { routeName } = navigation.state;
         let iconName;
         if (routeName === 'Map') {
-          iconName = `ios-information-circle${focused ? '' : '-outline'}`;
+          iconName = `ios-map${focused ? '' : '-outline'}`;
         } else if (routeName === 'Dashboard') {
-          iconName = `ios-options${focused ? '' : '-outline'}`;
+          iconName = `ios-person${focused ? '' : '-outline'}`;
         }
 
-        // You can return any component that you like here! We usually use an
-        // icon component from react-native-vector-icons
+        // You can return any component that you like here! 
         return <Ionicons name={iconName} size={25} color={tintColor} />;
       },
     }),
     tabBarOptions: {
-      activeTintColor: 'grey',
-      inactiveTintColor: 'black',
-      activeBackgroundColor: 'green',
+      activeTintColor: '#7bc087',
+      inactiveTintColor: '#3b4141',
+      activeBackgroundColor: '#2e3434',
       inactiveBackgroundColor: 'white'
     }
   }
 );
 
-// export default Tabs;
 
 /*
 Resources: 
