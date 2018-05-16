@@ -12,12 +12,12 @@ import { connect } from 'react-redux';
 // import RequiresLogin from '../common/Requires-Login';
 import Navbar from '../common/Navbar';
 import UserProfile from '../common/UserProfile';
+import MarkerList from '../common/MarkerList';
 import {
   getMarkersDashboard,
   deleteMarkerDashboard
 } from '../actions/markerActions';
 import { getCurrentUser } from '../actions/userActions';
-import MarkerList from '../common/MarkerList';
 
 import * as styles from '../styles/dashboardStyles';
 
@@ -38,7 +38,7 @@ class DashboardScreen extends Component {
           back={() => this.props.navigation.goBack()}
         />
         <UserProfile navigation={this.props.navigation} />
-        <MarkerList />
+        <MarkerList navigation={this.props.navigation} />
       </View>
     );
   }

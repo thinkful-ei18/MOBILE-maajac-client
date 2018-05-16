@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Image,
-  Button,
   FlatList,
   ScrollView /* AsyncStorage */
 } from 'react-native';
+import { List, ListItem } from "react-native-elements";
 import { connect } from 'react-redux';
 
 import {
@@ -26,7 +25,7 @@ class MarkerList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      header: 'Dashboard'
+
     };
   }
 
@@ -35,34 +34,54 @@ class MarkerList extends Component {
   }
 
   render() {
-    const reports = this.props.markersFromServer;
+    // const reports = this.props.markersFromServer;
 
-    let userReports = reports.map(report => (
-      <View style={styles.reportCard} key={report._id}>
-        <Text style={styles.incidentType}>{report.incidentType}</Text>
-        <Image
-          style={styles.reportIcon}
-          alt={`Report icon for ${report.incidentType}`}
-          source={{ uri: 'report.icon' }}
-        />
-        <Text style={styles.incidentDate}>Date: {report.date}</Text>
-        <Text style={styles.incidentDescriptionTitle}>Description:</Text>
-        <Text style={styles.incidentDescription}>{report.description}</Text>
-        <Button
-          onPress={() => this.onClick(report._id)}
-          title="Delete"
-          id={report._id}
-          style={styles.deleteIncident}
-          accessibilityLabel="Delete this incident report"
-        >
-          Delete
-        </Button>
-      </View>
-    ));
+
+    // let userReports = reports.map(report => (
+    //   <View style={styles.reportCard} key={report._id}>
+    //     <Text style={styles.incidentType}>{report.incidentType}</Text>
+    //     <Image
+    //       style={styles.reportIcon}
+    //       alt={`Report icon for ${report.incidentType}`}
+    //       source={{ uri: 'report.icon' }}
+    //     />
+    //     <Text style={styles.incidentDate}>Date: {report.date}</Text>
+    //     <Text style={styles.incidentDescriptionTitle}>Description:</Text>
+    //     <Text style={styles.incidentDescription}>{report.description}</Text>
+    //     <Button
+    //       onPress={() => this.onClick(report._id)}
+    //       title="Delete"
+    //       id={report._id}
+    //       style={styles.deleteIncident}
+    //       accessibilityLabel="Delete this incident report"
+    //     >
+    //       Delete
+    //     </Button>
+    //   </View>
+    // ));
+    // <View style={styles.userReports}>{userReports}</View>
+
 
     return (
       <ScrollView>
-        <View style={styles.userReports}>{userReports}</View>
+        <List>
+          <FlatList
+            data={this.props.markersFromServer}
+            renderItem={(marker, index) => (
+
+              < ListItem
+                roundAvatar
+                title={`${marker.item.incidentType} on ${marker.item.date}`}
+                subtitle={marker.item.description}
+                avatar={marker.item.icon}
+                badge={{ value: 'delete', containerStyle: { backgroundColor: 'red' } }}
+                onPress={this.onClick}
+                chevronColor={'white'}
+                keyExtractor={marker => marker.id}
+              />
+            )}
+          />
+        </List>
       </ScrollView>
     );
   }

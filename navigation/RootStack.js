@@ -10,6 +10,12 @@ import { addListener } from './redux';
 
 // SCREENS NECESSARY FOR ROUTING
 export const RootStack = createStackNavigator({
+  Dashboard: {
+    screen: DashboardScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
   Login: {
     screen: LoginScreen,
     navigationOptions: {
@@ -22,12 +28,6 @@ export const RootStack = createStackNavigator({
       header: null
     }
   },
-  Dashboard: {
-    screen: DashboardScreen,
-    navigationOptions: {
-      header: null
-    }
-  }
 });
 
 // "TO HANDLE YOUR APP'S NAVIGATION STATE IN REDUX, YOU CAN PASS YOUR OWN NAVIGATION PROP TO A NAVIGATOR"
