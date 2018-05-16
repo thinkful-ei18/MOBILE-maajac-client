@@ -70,8 +70,7 @@ class DashboardScreen extends Component {
       <View style={styles.view}>
         <Navbar
           header={this.state.header}
-          plus={() => this.add()}
-          back={() => this.props.navigation.goBack()}
+          back={this.props.authToken !== null ? false : () => this.props.navigation.goBack()}
         />
         <UserProfile navigation={this.props.navigation} />
         <ScrollView>
@@ -84,8 +83,8 @@ class DashboardScreen extends Component {
 
 export const mapStateToProps = state => ({
     markersFromServer: state.markers.allMarkers ? state.markers.allMarkers : [],
-    loggedIn: state.auth.currentUser !== null,
-    currentUser: state.auth.currentUser ? state.auth.currentUser : ''
+    currentUser: state.auth.currentUser ? state.auth.currentUser : '',
+    authToken: state.auth.authToken
   });
 
 export default connect(mapStateToProps)(DashboardScreen);
@@ -93,4 +92,6 @@ export default connect(mapStateToProps)(DashboardScreen);
 /*
 Resources:
  - https://facebook.github.io/react-native/docs/button.html
+
+ plus={() => this.add()}
 */
