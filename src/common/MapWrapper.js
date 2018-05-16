@@ -13,7 +13,6 @@ import { getMarkers } from '../actions/markerActions';
 // import { styles } from '../styles/mapStyles';
 import * as styles from '../styles/mapStyles';
 
-
 const Marker = MapView.Marker;
 
 // function to get the coordinates of the user's current location (if they approve the request)
@@ -115,9 +114,14 @@ export class MapWrapper extends Component {
       <View styles={{ justifyContent: 'center' }}>
         <Navbar
           header={this.state.header}
-          goTo={() => this.props.navigation.navigate('Dashboard')}
-          back={() => this.props.navigation.goBack()}
-          plus={() => this.open()}
+          back={
+            this.props.authToken !== null
+              ? false
+              : () => this.props.navigation.goBack()
+          }
+          plus={this.props.authToken !== null
+              ? () => this.open()
+              : false}
         />
         <View style={styles.container}>
           <MapView
@@ -144,7 +148,6 @@ export class MapWrapper extends Component {
                 }}
                 title={marker.incidentType}
                 description={marker.description}
-                // image={this.markerImage(marker.incidentType)}
                 key={index}
               >
                 {this.markerImage(marker.incidentType)}
@@ -155,10 +158,7 @@ export class MapWrapper extends Component {
               title={'Incident Pin'}
             />
           </MapView>
-          <ModalForm
-            close={() => this.close()}
-            visible={this.state.form}
-          />
+          <ModalForm close={() => this.close()} visible={this.state.form} />
         </View>
       </View>
     );
@@ -169,13 +169,14 @@ export const mapStateToProps = state => ({
   markersFromServer: state.markers.allMarkers,
   indicatorPin: state.report.userLocation
     ? {
-      latitude: state.report.userLocation.lat,
-      longitude: state.report.userLocation.lng
-    }
+        latitude: state.report.userLocation.lat,
+        longitude: state.report.userLocation.lng
+      }
     : {
-      latitude: 37.78825,
-      longitude: -122.4324
-    }
+        latitude: 37.78825,
+        longitude: -122.4324
+      },
+  authToken: state.auth.authToken
 });
 
 export default connect(mapStateToProps)(MapWrapper);

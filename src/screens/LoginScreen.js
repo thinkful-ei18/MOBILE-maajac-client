@@ -6,7 +6,7 @@ import SignupForm from '../common/SignupForm';
 
 import * as style from '../styles/reportFormStyles';
 
-export default class WardrobeScreen extends React.Component {
+export default class LoginScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

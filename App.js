@@ -2,21 +2,18 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 
 import { store } from './navigation/store';
-import AppWithNavigationState from './navigation/RootStack';
+import Root from './src/Root';
 
 
 // LOADS THE ENTIRE APP
-export default class Root extends Component {
+export default class App extends Component {
+
   render() {
+  
     return (
       <Provider store={store}>
-        <AppWithNavigationState />
+        <Root />
       </Provider>
     );
   }
 }
-
-/*
-Resources:
- - https://reactnavigation.org/docs/en/redux-integration.html
-*/
