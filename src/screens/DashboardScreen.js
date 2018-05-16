@@ -4,11 +4,10 @@ import {
   Text,
   Image,
   Button,
-  ScrollView /* AsyncStorage */
+  ScrollView 
 } from 'react-native';
 import { connect } from 'react-redux';
 
-// import RequiresLogin from '../common/Requires-Login';
 import Navbar from '../common/Navbar';
 import UserProfile from '../common/UserProfile';
 import {
@@ -18,6 +17,7 @@ import {
 import { getCurrentUser } from '../actions/userActions';
 
 import * as styles from '../styles/dashboardStyles';
+
 
 class DashboardScreen extends Component {
   componentDidMount() {
@@ -37,17 +37,14 @@ class DashboardScreen extends Component {
   }
 
   render() {
-    console.log('on dashboard')
     if (this.props.currentUser === '') {
       this.props.navigation.navigate('Login');
     }
     
     const reports = this.props.markersFromServer;
-    // let username;
 
     let userReports = reports.map(report => (
       <View style={styles.reportCard} key={report._id}>
-        {/* {this.props.loggedIn ? '' : (<Redirect to='/map' />)} */}
         <Text style={styles.incidentType}>{report.incidentType}</Text>
         <Image
           style={styles.reportIcon}
@@ -85,14 +82,11 @@ class DashboardScreen extends Component {
   }
 }
 
-export const mapStateToProps = state => {
-  console.log('DASHBOARD SCREEN STATE:', state);
-  return {
+export const mapStateToProps = state => ({
     markersFromServer: state.markers.allMarkers ? state.markers.allMarkers : [],
     loggedIn: state.auth.currentUser !== null,
     currentUser: state.auth.currentUser ? state.auth.currentUser : ''
-  };
-};
+  });
 
 export default connect(mapStateToProps)(DashboardScreen);
 
