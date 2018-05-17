@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 import Navbar from '../common/Navbar';
 import LoginFormNative from '../common/LoginForm';
 import SignupForm from '../common/SignupForm';
 
-import * as style from '../styles/reportFormStyles';
+import * as styles from '../styles/login-signup-formStyles';
 
 export default class LoginScreen extends React.Component {
   constructor(props) {
@@ -15,11 +15,12 @@ export default class LoginScreen extends React.Component {
       buttonText: 'Need to create an account?'
     };
   }
+
   render() {
     let form;
     if (this.state.form === 'login') {
       form = (
-        <View style={style.containerLogin}>
+        <View style={styles.containerLogin}>
           <LoginFormNative navigation={this.props.navigation} />
           <TouchableOpacity
             onPress={() =>
@@ -29,7 +30,7 @@ export default class LoginScreen extends React.Component {
                 buttonText: 'Already have an account?'
               })
             }
-            style={{ marginLeft: 20 }}
+            style={styles.switchScreen}
           >
             <Text>{this.state.buttonText}</Text>
           </TouchableOpacity>
@@ -37,7 +38,7 @@ export default class LoginScreen extends React.Component {
       );
     } else {
       form = (
-        <View style={style.containerLogin}>
+        <View style={styles.containerLogin}>
           <SignupForm navigation={this.props.navigation} />
           <TouchableOpacity
             onPress={() =>
@@ -47,7 +48,7 @@ export default class LoginScreen extends React.Component {
                 buttonText: 'Need to create an account?'
               })
             }
-            style={{ marginLeft: 20 }}
+            style={styles.switchScreen}
           >
             <Text>{this.state.buttonText}</Text>
           </TouchableOpacity>
@@ -66,9 +67,3 @@ export default class LoginScreen extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 40
-  }
-});

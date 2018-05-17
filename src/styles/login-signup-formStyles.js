@@ -4,20 +4,22 @@ const { StyleSheet } = React;
 const Dimensions = require('Dimensions');
 
 const styles = StyleSheet.create({
+  // LOGIN SCREEN
   containerLogin: {
-    flex: 1,
-    paddingTop: 80,
-    marginLeft: 80,
-    paddingHorizontal: 90,
-
+    paddingVertical: 100,
+    paddingHorizontal: 20
   },
+  switchScreen: { 
+    marginLeft: 50 
+  },
+
+  // LOGIN FORM
+  container: {},
   label: {
-    marginLeft: 20,
     fontSize: 18,
     marginBottom: 10
   },
   button: {
-    marginLeft: 20,
     alignItems: 'center',
     backgroundColor: '#7bc087',
     height: 30,
@@ -26,11 +28,10 @@ const styles = StyleSheet.create({
     paddingTop: 8
   },
   input: {
-    marginLeft: 20,
     width: Dimensions.get('window').width - 60,
     borderWidth: 1,
     borderColor: '#9e9fa1',
-    paddingBottom: 4,
+    paddingBottom: 12,
     fontSize: 16,
     marginBottom: 12
   },
