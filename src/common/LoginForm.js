@@ -11,7 +11,7 @@ import {
 import { API_BASE_URL } from '../../config';
 import { setAuthToken } from '../actions/userActions';
 
-import * as style from '../styles/login-signup-formStyles';
+import * as styles from '../styles/login-signup-formStyles';
 
 class MyForm extends React.Component {
   constructor(props) {
@@ -62,27 +62,27 @@ class MyForm extends React.Component {
   render() {
     return (
       <ScrollView
-        // style={style.container}
+        // style={styles.container}
         keyboardShouldPersistTaps={'handled'}
       >
-        <Text style={style.label}>Username</Text>
+        <Text style={styles.label}>Username</Text>
         <TextInput
-          style={style.input}
+          style={styles.input}
           name={'username'}
           autoFocus={true}
           autoCorrect={false}
           onChangeText={username => this.setState({ username })}
         />
-        <Text style={style.label}>Password</Text>
+        <Text style={styles.label}>Password</Text>
         <TextInput
-          style={style.input}
+          style={styles.input}
           name={'password'}
           autoCorrect={false}
           maxLength={72}
           onChangeText={password => this.setState({ password })}
           secureTextEntry={true}
         />
-        <TouchableOpacity onPress={this.login} style={style.button}>
+        <TouchableOpacity onPress={this.login} style={styles.button}>
           <Text>Login</Text>
         </TouchableOpacity>
       </ScrollView>

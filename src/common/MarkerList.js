@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import {
-  View,
   Text,
   FlatList,
-  ScrollView /* AsyncStorage */
+  ScrollView 
 } from 'react-native';
 import { List, Card, Button } from "react-native-elements";
 import { connect } from 'react-redux';
@@ -40,25 +39,28 @@ class MarkerList extends Component {
 
     return (
       <ScrollView>
-        <List>
+        <List
+          containerStyle={styles.list}
+        >
           <FlatList
-            style={{ paddingBottom: 10 }}
+            style={styles.flatlist}
             data={this.props.markersFromServer}
             renderItem={(marker, index) => (
               < Card
                 key={index}
                 title={marker.item.incidentType}
+                containerStyle={styles.card}
               >
-                <Text style={{ marginBottom: 10 }}>
+                <Text style={styles.markerDescription}>
                   {marker.item.description}
                 </Text>
-                <Text style={{ marginBottom: 10, fontStyle: 'italic', color: '#5F5F5F' }}>
+                <Text style={styles.info}>
                   On {marker.item.date} at {marker.item.time}
                 </Text>
                 <Button
                   onPress={() => this.deleteMarker(marker.item._id)}
-                  backgroundColor='#f40331'
-                  buttonStyle={{ borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, marginTop: 10 }}
+                  backgroundColor='#a0472f'
+                  buttonStyle={styles.delete}
                   title='DELETE MARKER' />
               </Card>
 
@@ -81,3 +83,7 @@ export const mapStateToProps = state => {
 export default connect(mapStateToProps)(MarkerList);
 
 
+/*
+Resources:
+ - https://github.com/react-native-training/react-native-elements
+ */

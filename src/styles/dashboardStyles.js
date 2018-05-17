@@ -10,16 +10,20 @@ var dashboardStyles = StyleSheet.create({
 
   // USER PROFILE
   userProfileContainer: {
-    marginTop: 40,
-    height: 90,
-    minHeight: 90,
-    // paddingBottom: 10,
-    marginBottom: 15
+    flexDirection: 'row',
+    height: 150,
+    minHeight: 120,
+    marginBottom: 15,
+    backgroundColor: '#3b4141',
+    paddingHorizontal: 25,
+    paddingTop: 25,
+    paddingBottom: 10
+    
   },
   logOutButton: {
-    backgroundColor: '#f40331',
+    backgroundColor: '#7bc087',
     alignSelf: 'center',
-    width: 120,
+    width: 200,
     height: 30,
     textAlign: 'center',
     color: 'white',
@@ -27,19 +31,56 @@ var dashboardStyles = StyleSheet.create({
   },
   profilePic: {
     marginRight: 20,
-    width: 50,
-    height: 50
+    width: 80,
+    height: 80
 
   },
   userInfoDiv: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'row',
-    marginBottom: 40
+    marginBottom: 40,
+    paddingTop: 10
   },
   userUsername: {
-    fontSize: 18
+    backgroundColor: '#2e3434',
+    alignSelf: 'center',
+    width:200,
+    height: 35,
+    textAlign: 'center',
+    color: "#ffffff",
+    justifyContent: 'center',
+    paddingVertical: 5,
+    paddingHorizontal: 5,
+    marginBottom: 10,
+  },
+
+  // MARKER LIST
+  list: {
+    marginTop: -30,
+  },
+  flatlist: { 
+    paddingBottom: 10,
+    paddingTop: 15
+  },
+  card: {
+    backgroundColor: '#9e9fa1',
+  },
+  markerDescription: { 
+    marginBottom: 10,
+    
+  },
+  info: { 
+    marginBottom: 10, 
+    fontStyle: 'italic', 
+    color: '#ffffff' 
+  },
+  delete: { 
+    borderRadius: 0, 
+    marginLeft: 0, 
+    marginRight: 0, 
+    marginBottom: 0, 
+    marginTop: 10
   }
 
 })

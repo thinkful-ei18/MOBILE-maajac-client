@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 
 import { clearAuth } from '../actions/userActions';
 
-import * as dashboardStyles from '../styles/dashboardStyles';
+import * as styles from '../styles/dashboardStyles';
 
 class UserProfile extends Component {
   logout = () => {
@@ -22,28 +22,28 @@ class UserProfile extends Component {
     console.log('PROPS:', this.props);
 
     return (
-      <View style={dashboardStyles.userProfileContainer}>
+      <View style={styles.userProfileContainer}>
 
-        <View style={dashboardStyles.userInfoDiv}>
+        <View style={styles.userInfoDiv}>
           <Image
             source={{ uri: this.props.profilePicture }}
             alt='profile-pic'
-            style={dashboardStyles.profilePic}
+            style={styles.profilePic}
           />
-
-          <Text style={dashboardStyles.userUsername}>
-            Welcome, {this.props.currentUser.username}
-          </Text>
         </View>
 
-        <View style={dashboardStyles.logOutButton}>
+        <View>
+          <Text style={styles.userUsername}>
+            Welcome, {this.props.currentUser.username}
+          </Text>
+
           <TouchableOpacity
             onPress={() => {
               this.logout();
               this.props.navigation.navigate('Map');
             }}
           >
-          <Text style={dashboardStyles.logOutButton}>Log Out</Text>
+          <Text style={styles.logOutButton}>Log Out</Text>
           </TouchableOpacity>
         </View>
       </View>

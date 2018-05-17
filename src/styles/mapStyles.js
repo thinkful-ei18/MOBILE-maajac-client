@@ -1,7 +1,4 @@
-import { Constants } from 'expo';
-
 const React = require('react-native');
-
 const { StyleSheet } = React;
 
 const Dimensions = require('Dimensions');
@@ -11,7 +8,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: Constants.statusBarHeight,
+    paddingTop: 30,
     backgroundColor: '#ecf0f1'
   },
   mapScreen: {
