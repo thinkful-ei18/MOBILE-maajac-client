@@ -9,7 +9,7 @@ import reportReducer from '../src/reducers/reportReducer';
 import userAuthReducer from '../src/reducers/userAuthReducer';
 import modalReducer from '../src/reducers/modalReducer';
 import { defaultLocationReducer } from '../src/reducers/defaultLocationReducer';
-import { setAuthToken, /* authSuccess */ } from '../src/actions/userActions';
+import { setAuthToken } from '../src/actions/userActions';
 import { RootStack } from './RootStack';
 import { middleware } from './redux';
 
