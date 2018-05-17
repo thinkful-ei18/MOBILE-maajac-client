@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 
-import Navbar from '../common/Navbar';
 import UserProfile from '../common/UserProfile';
 import MarkerList from '../common/MarkerList';
 import { deleteMarkerDashboard } from '../actions/markerActions';
@@ -23,16 +22,9 @@ class DashboardScreen extends Component {
   }
 
   render() {
-    if (this.props.currentUser === '') {
-      this.props.navigation.navigate('Login');
-    }
 
     return (
       <View style={styles.view}>
-        <Navbar
-          header={this.state.header}
-          back={this.props.authToken !== null ? false : () => this.props.navigation.goBack()}
-        />
         <UserProfile navigation={this.props.navigation} />
         <MarkerList navigation={this.props.navigation} />
       </View>

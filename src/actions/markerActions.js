@@ -91,7 +91,6 @@ export const getMarkers = () => (dispatch, getState) => {
   })
     .then(res => res.json())
     .then(data => dispatch(getMarkerSuccess(data)))
-    .then(res => console.log(res))
     .catch(err => {
       dispatch(getMarkerError(err));
     });

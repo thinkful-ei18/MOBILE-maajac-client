@@ -10,7 +10,7 @@ export default class LoginScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      header: 'Login',
+      header: 'safeR',
       form: 'login',
       buttonText: 'Need to create an account?'
     };
@@ -25,7 +25,6 @@ export default class LoginScreen extends React.Component {
           <TouchableOpacity
             onPress={() =>
               this.setState({
-                header: 'Signup',
                 form: 'signup',
                 buttonText: 'Already have an account?'
               })
@@ -44,7 +43,6 @@ export default class LoginScreen extends React.Component {
           <TouchableOpacity
             onPress={() =>
               this.setState({
-                header: 'Login',
                 form: 'login',
                 buttonText: 'Need to create an account?'
               })

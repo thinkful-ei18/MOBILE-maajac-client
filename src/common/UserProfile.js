@@ -19,14 +19,15 @@ class UserProfile extends Component {
   };
 
   render() {
-    console.log('PROPS:', this.props);
 
     return (
       <View style={styles.userProfileContainer}>
 
         <View style={styles.userInfoDiv}>
           <Image
-            source={{ uri: this.props.profilePicture }}
+            source={{ uri: this.props.currentUser.profilePicture 
+            ?  this.props.currentUser.profilePicture 
+            : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'}}
             alt='profile-pic'
             style={styles.profilePic}
           />
@@ -53,7 +54,6 @@ class UserProfile extends Component {
 
 export const mapStateToProps = state => ({
   currentUser: state.auth.currentUser ? state.auth.currentUser : '',
-  profilePicture: state.auth.currentUser !== null ? state.auth.currentUser.profilePicture : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
 });
 
 export default connect(mapStateToProps)(UserProfile);

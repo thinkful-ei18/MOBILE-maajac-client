@@ -1,4 +1,4 @@
-// import { AsyncStorage } from 'react-native';
+import { AsyncStorage } from 'react-native';
 import { createNavigationReducer } from 'react-navigation-redux-helpers';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { reducer as formReducer } from 'redux-form';
@@ -9,16 +9,16 @@ import reportReducer from '../src/reducers/reportReducer';
 import userAuthReducer from '../src/reducers/userAuthReducer';
 import modalReducer from '../src/reducers/modalReducer';
 import { defaultLocationReducer } from '../src/reducers/defaultLocationReducer';
-import { setAuthToken, /* authSuccess */ } from '../src/actions/userActions';
+import { setAuthToken } from '../src/actions/userActions';
 import { RootStack } from './RootStack';
 import { middleware } from './redux';
-import { loadAuthToken } from '../local-storage';
 
 
 // CREATE A REDUCER THAT COMBINES ALL THE SCREENS
 const navReducer = createNavigationReducer(RootStack);
 
-// COMBINE ALL THE REDUCER FILES
+
+// COMBINE ALL OF THE REDUCERS
 const appReducer = combineReducers({
   nav: navReducer,
   form: formReducer,
@@ -37,15 +37,13 @@ export const store = createStore(
 );
 
 
-// PULL THE AUTH TOKEN & USER FROM ASYNC STORAGE TO PUT BACK IN STATE
-const authToken = loadAuthToken();
-// const user = JSON.parse(AsyncStorage.getItem('user'));
-
-
-if (authToken) {
-  store.dispatch(setAuthToken(authToken));
-  // store.dispatch(authSuccess(user));
-}
+// CHECK FOR AN AUTH TOKEN IN ASYNC STORAGE WHEN THE PAGE IS REFRESHED
+AsyncStorage.getItem('authToken')
+  .then(authToken => {
+    if (authToken !== null) {
+      store.dispatch(setAuthToken(authToken))
+    }
+  })
 
 
 /*

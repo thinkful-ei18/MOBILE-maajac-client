@@ -6,19 +6,29 @@ import * as styles from '../styles/navbarStyles';
 const Navbar = ({ header, goTo, back, plus }) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={back}>
-        <Text style={styles.back}>{back ? '<' : null}</Text>
+      
+      { back
+      ? <TouchableOpacity onPress={back}>
+        <Text style={styles.back}>{'<'}</Text>
       </TouchableOpacity>
+      : null }
 
-      <Text style={styles.text}>{header}</Text>
+      { header
+      ? <Text style={styles.header}>{header}</Text>
+      : null }
 
-      <TouchableOpacity onPress={goTo}>
-        <Text style={styles.plus}>{goTo ? '>' : null}</Text>
+      { goTo 
+      ? <TouchableOpacity onPress={goTo}>
+        <Text style={styles.goTo}>{'>'}</Text>
       </TouchableOpacity>
+      : null }
 
-      <TouchableOpacity onPress={plus}>
-        <Text style={styles.plus}>{plus ? '+' : null}</Text>
+      { plus  
+      ? <TouchableOpacity onPress={plus}>
+        <Text style={styles.plus}>{'+'}</Text>
       </TouchableOpacity>
+      : null }
+
     </View>
   );
 };

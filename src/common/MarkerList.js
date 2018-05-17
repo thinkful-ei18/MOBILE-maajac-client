@@ -29,7 +29,6 @@ class MarkerList extends Component {
   }
 
   deleteMarker(markerId) {
-    console.log(markerId)
     this.props.dispatch(deleteMarkerDashboard({ markerId }));
     this.props.dispatch(getMarkersDashboard());
 
@@ -45,9 +44,8 @@ class MarkerList extends Component {
           <FlatList
             style={styles.flatlist}
             data={this.props.markersFromServer}
-            renderItem={(marker, index) => (
+            renderItem={ marker => (
               < Card
-                key={index}
                 title={marker.item.incidentType}
                 containerStyle={styles.card}
               >
@@ -61,10 +59,12 @@ class MarkerList extends Component {
                   onPress={() => this.deleteMarker(marker.item._id)}
                   backgroundColor='#a0472f'
                   buttonStyle={styles.delete}
-                  title='DELETE MARKER' />
+                  title='DELETE MARKER' 
+                />
               </Card>
 
             )}
+            keyExtractor={(item, index) => `${index}`}
           />
         </List>
       </ScrollView>
@@ -86,4 +86,6 @@ export default connect(mapStateToProps)(MarkerList);
 /*
 Resources:
  - https://github.com/react-native-training/react-native-elements
+ - https://stackoverflow.com/questions/44545148/basic-flatlist-code-throws-warning-react-native
+ - https://github.com/wonday/react-native-pdf/issues/125
  */
