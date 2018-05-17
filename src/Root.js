@@ -8,7 +8,7 @@ import Tabs from '../navigation/Tabs';
 import * as styles from './styles/rootStyles';
 
 
-// LOADS THE ENTIRE APP
+// DETERMINED THE NAVIGATION STYLE: TABS OR A STACK
 class Root extends Component {
 
   render() {
