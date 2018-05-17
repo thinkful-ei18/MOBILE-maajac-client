@@ -23,15 +23,11 @@ class DashboardScreen extends Component {
   }
 
   render() {
-    if (this.props.currentUser === '') {
-      this.props.navigation.navigate('Login');
-    }
 
     return (
       <View style={styles.view}>
         <Navbar
-          header={this.state.header}
-          back={this.props.authToken !== null ? false : () => this.props.navigation.goBack()}
+          // header={this.state.header}
         />
         <UserProfile navigation={this.props.navigation} />
         <MarkerList navigation={this.props.navigation} />

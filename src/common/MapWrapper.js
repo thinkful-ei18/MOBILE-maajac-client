@@ -110,7 +110,7 @@ export class MapWrapper extends Component {
     return (
       <View styles={{ justifyContent: 'center' }}>
         <Navbar
-          header={this.state.header}
+          // header={this.state.header}
           back={
             this.props.authToken !== null
               ? false

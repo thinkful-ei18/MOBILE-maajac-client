@@ -61,7 +61,7 @@ export default class LoginScreen extends React.Component {
     return (
       <View>
         <Navbar
-          header={this.state.header}
+          // header={this.state.header}
           goTo={() => this.props.navigation.navigate('Map')}
         />
         {form}
