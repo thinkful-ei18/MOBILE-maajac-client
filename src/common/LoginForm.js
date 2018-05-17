@@ -20,21 +20,11 @@ class MyForm extends React.Component {
     this.state = {
       username: '',
       password: '',
-      // authToken: null
     };
   }
-  componentDidMount() {
-    this.loadInitialState().done();
-  }
-  loadInitialState = async () => {
-    const value = await AsyncStorage.getItem('authToken');
-    if (value !== null) {
-      console.log(`async storage retrieved: ${value}`);
-    }
-  };
+
 
   login = () => {
-    console.log('received dispatch')
     return fetch(`${API_BASE_URL}/auth/login`, {
       method: 'POST',
       headers: {
@@ -48,10 +38,8 @@ class MyForm extends React.Component {
       .then(res => res.json())
       .then(res => {
         if (res.authToken) {
-          console.log('got an auth token')
           AsyncStorage.setItem('authToken', res.authToken);
           this.props.navigation.dispatch(setAuthToken(res.authToken))
-          // this.props.navigation.navigate('Map');
         } else {
           console.log(`Message: ${res.message}`);
         }
@@ -62,7 +50,6 @@ class MyForm extends React.Component {
   render() {
     return (
       <ScrollView
-        // style={styles.container}
         keyboardShouldPersistTaps={'handled'}
       >
         <Text style={styles.label}>Username</Text>

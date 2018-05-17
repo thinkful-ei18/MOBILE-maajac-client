@@ -24,16 +24,7 @@ class SignupForm extends React.Component {
       passwordConfirm: ''
     };
   }
-  componentDidMount() {
-    this.loadInitialState().done();
-  }
-  loadInitialState = async () => {
-    const value = await AsyncStorage.getItem('authToken');
-    if (value !== null) {
-      console.log(`async storage retrieved: ${value}`);
-      //this.props.navigation.navigate('Map');
-    }
-  };
+
   signup = () => {
     fetch(`${API_BASE_URL}/users`, {
       method: 'POST',
@@ -66,11 +57,9 @@ class SignupForm extends React.Component {
       })
       .then(res => res.json())
       .then(res => {
-        console.log(res);
         if (res.authToken) {
           this.props.navigation.dispatch(setAuthToken(res.authToken));
           AsyncStorage.setItem('authToken', res.authToken);
-          // this.props.navigation.navigate('Map');
         } else {
           console.log(`Error: Sign Up Failed`);
         }
@@ -81,7 +70,6 @@ class SignupForm extends React.Component {
   render() {
     return (
       <ScrollView
-        // style={style.container}
         keyboardShouldPersistTaps={'handled'}
       >
         <Text style={style.label}>Username</Text>
