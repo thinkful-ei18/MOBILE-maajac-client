@@ -129,7 +129,6 @@ class reportForm extends Component {
 					onPress={() => {
 						this.props.close();
 						this.submit().then(() => {
-							console.log('Getting new markers...');
 							this.props.dispatch(getMarkers());
 							this.props.dispatch(getMarkersDashboard());
 						});

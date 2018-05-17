@@ -19,7 +19,6 @@ class UserProfile extends Component {
   };
 
   render() {
-    console.log('PROPS:', this.props);
 
     return (
       <View style={styles.userProfileContainer}>

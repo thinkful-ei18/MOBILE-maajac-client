@@ -5,12 +5,9 @@ import { MapView } from 'expo';
 import { ModalForm } from './ModalForm';
 import Navbar from './Navbar';
 
-// import { View, StyleSheet, Image } from 'react-native';
-// import { Constants, MapView } from 'expo';
 import { setUserLocation } from '../actions/reportActions';
 import { getMarkers } from '../actions/markerActions';
 
-// import { styles } from '../styles/mapStyles';
 import * as styles from '../styles/mapStyles';
 
 const Marker = MapView.Marker;
@@ -136,7 +133,6 @@ export class MapWrapper extends Component {
                   lng: nativeEvent.coordinate.longitude
                 })
               );
-              console.log(this.props.indicatorPin);
             }}
           >
             {this.props.markersFromServer.map((marker, index) => (

@@ -29,7 +29,6 @@ class MarkerList extends Component {
   }
 
   deleteMarker(markerId) {
-    console.log(markerId)
     this.props.dispatch(deleteMarkerDashboard({ markerId }));
     this.props.dispatch(getMarkersDashboard());
 
