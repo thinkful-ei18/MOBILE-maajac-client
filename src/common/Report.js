@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Text, ScrollView, TextInput, View, AsyncStorage, TouchableOpacity, Picker } from 'react-native';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
-import { newMarker, getMarkers } from '../actions/markerActions';
+import { reduxForm } from 'redux-form';
+import { getMarkers, getMarkersDashboard } from '../actions/markerActions';
 import DatePicker from 'react-native-datepicker';
 
 import Input from './Input';
@@ -131,6 +131,7 @@ class reportForm extends Component {
 						this.submit().then(() => {
 							console.log('Getting new markers...');
 							this.props.dispatch(getMarkers());
+							this.props.dispatch(getMarkersDashboard());
 						});
 					}}
 					style={style.button}
