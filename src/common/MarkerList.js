@@ -44,9 +44,8 @@ class MarkerList extends Component {
           <FlatList
             style={styles.flatlist}
             data={this.props.markersFromServer}
-            renderItem={(marker, index) => (
+            renderItem={ marker => (
               < Card
-                key={index}
                 title={marker.item.incidentType}
                 containerStyle={styles.card}
               >
@@ -60,10 +59,12 @@ class MarkerList extends Component {
                   onPress={() => this.deleteMarker(marker.item._id)}
                   backgroundColor='#a0472f'
                   buttonStyle={styles.delete}
-                  title='DELETE MARKER' />
+                  title='DELETE MARKER' 
+                />
               </Card>
 
             )}
+            keyExtractor={(item, index) => index}
           />
         </List>
       </ScrollView>
