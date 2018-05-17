@@ -30,9 +30,10 @@ export default class LoginScreen extends React.Component {
                 buttonText: 'Already have an account?'
               })
             }
-            style={styles.switchScreen}
           >
-            <Text>{this.state.buttonText}</Text>
+            <Text style={styles.buttonText}>
+              {this.state.buttonText}
+            </Text>
           </TouchableOpacity>
         </View>
       );
@@ -48,9 +49,10 @@ export default class LoginScreen extends React.Component {
                 buttonText: 'Need to create an account?'
               })
             }
-            style={styles.switchScreen}
           >
-            <Text>{this.state.buttonText}</Text>
+            <Text style={styles.buttonText}>
+              {this.state.buttonText}
+            </Text>
           </TouchableOpacity>
         </View>
       );

@@ -7,10 +7,10 @@ const styles = StyleSheet.create({
   // LOGIN SCREEN
   containerLogin: {
     paddingVertical: 100,
-    paddingHorizontal: 20
+    paddingLeft: 30
   },
-  switchScreen: { 
-    marginLeft: 50 
+  buttonText: {
+    textAlign: 'center'
   },
 
   // LOGIN FORM
@@ -41,6 +41,6 @@ module.exports = styles;
 
 /*
 Resources:
- - https://github.com/vhpoet/react-native-styling-cheat-sheet#text
+ - https://github.com/vhpoet/react-native-styling-cheat-sheet
  - https://coolors.co/042a2b-5eb1bf-54f2f2-f4e04d-ffffff
 */
