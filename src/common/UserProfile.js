@@ -42,7 +42,6 @@ class UserProfile extends Component {
               this.logout();
               this.props.navigation.navigate('Map');
             }}
-            style={styles.logOutButton}
           >
           <Text style={styles.logOutButton}>Log Out</Text>
           </TouchableOpacity>
