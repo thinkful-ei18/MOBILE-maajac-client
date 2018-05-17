@@ -12,6 +12,7 @@ import * as styles from './styles/rootStyles';
 class Root extends Component {
 
   render() {
+    console.log('ROOT PROP:', this.props)
 
     let navigationStyle;
     if (this.props.authToken !== null) {
@@ -29,9 +30,10 @@ class Root extends Component {
   }
 }
 
-export const mapStateToProps = state => ({
-    authToken: state.auth.authToken
-  })
+export const mapStateToProps = state => {
+  console.log('ROOT STATE:', state)  
+  return {authToken: state.auth.authToken}
+  }
 
 export default connect(mapStateToProps)(Root)
 
