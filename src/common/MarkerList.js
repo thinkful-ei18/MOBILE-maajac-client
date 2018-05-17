@@ -64,7 +64,7 @@ class MarkerList extends Component {
               </Card>
 
             )}
-            keyExtractor={(item, index) => index}
+            keyExtractor={(item, index) => `${index}`}
           />
         </List>
       </ScrollView>
@@ -86,4 +86,6 @@ export default connect(mapStateToProps)(MarkerList);
 /*
 Resources:
  - https://github.com/react-native-training/react-native-elements
+ - https://stackoverflow.com/questions/44545148/basic-flatlist-code-throws-warning-react-native
+ - https://github.com/wonday/react-native-pdf/issues/125
  */
