@@ -7,25 +7,43 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: '#2e3434',
     justifyContent: 'space-between',
-    paddingVertical: 25,
+    height: 60
   },
-  text: {
+  header: {
     color: '#ffffff',
     fontSize: 25,
     fontFamily: 'Avenir-Heavy',
-    textAlign: 'center'
+    textAlign: 'center',
+    marginLeft: 20,
+    paddingTop: 20,
+    paddingBottom: 5
   },
   back: {
     color: '#ffffff',
     fontSize: 25,
     fontFamily: 'Avenir-Heavy',
-    marginLeft: 15
+    marginLeft: 20,
+    paddingTop: 20,
+    paddingBottom: 5
+  },
+  goTo: {
+    color: '#ffffff',
+    fontSize: 25,
+    fontFamily: 'Avenir-Heavy',
+    alignSelf:'flex-end',
+    marginRight: 20,
+    paddingTop: 20,
+    paddingBottom: 5
   },
   plus: {
     color: '#ffffff',
     fontSize: 25,
     fontFamily: 'Avenir-Heavy',
-    marginRight: 15
+    alignSelf:'flex-end',
+    marginRight: 20,
+    marginLeft: 20,
+    paddingTop: 20,
+    paddingBottom: 5
   }
 });
 
