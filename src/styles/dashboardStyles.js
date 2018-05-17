@@ -16,7 +16,7 @@ var dashboardStyles = StyleSheet.create({
     marginBottom: 15,
     backgroundColor: '#3b4141',
     paddingHorizontal: 25,
-    paddingTop: 25,
+    paddingTop: 35,
     paddingBottom: 10
     
   },
