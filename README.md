@@ -7,6 +7,10 @@ SafeReport/safeR is an app that aims to keep the community safer by making sure 
 * Github Server: https://github.com/thinkful-ei18/majaac-server
 * Github Mobile: https://github.com/thinkful-ei18/MOBILE-maajac-client
 
+### Demo Account
+username: demo <br>
+password: demouser123
+
 ### The API
 A RESTful API was created to handle the requests from the client portion of safeR. Please refer to the server repo for further details.
 
