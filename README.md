@@ -15,11 +15,21 @@ password: demouser123
 A RESTful API was created to handle the requests from the client portion of safeR. Please refer to the server repo for further details.
 
 ### Tech Stack
-#### Front End
+#### Front End - Web
+* React
+* Redux
+* Google Maps
+* HTML
+* CSS
+* Enzyme
+* Jest
+
+#### Front End - Mobile
 * React Native
 * Redux
 * React Maps
-#### Back End
+
+#### Back End - Web & Mobile
 * Node
 * Express
 * Mongoose
